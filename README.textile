@@ -1,0 +1,12 @@
+h1. What is @it@ going to be?
+
+@it@ will be the rewrite of my gem "i18n_link":https://github.com/iGEL/i18n_link, but it will support all kinds of HTML tags. It will have a cleaner DSL.
+
+Here an example, how I think it'll work:
+
+<pre><code>en:
+  copy: "Did you read the %{guide:Rails I18n guide}? It has %{strong:more than %{advises} useful advises}.</code></pre>
+
+<pre><code><%=it "copy", guide: It.link("http://guides.rubyonrails.org/i18n.html", target: "_blank"), strong: It.tag(:strong), advices: 100 %></code></pre>
+
+Interpolations named @link@, starting with @link_@ or ending with @_link@ will be converted to links, if the argument is a link or Hash.
