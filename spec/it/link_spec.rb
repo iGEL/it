@@ -29,8 +29,14 @@ describe It::Link, '.new' do
   end
 end
 
-describe It::Link, '#tag' do
+describe It::Link, '#tag_name' do
   it "should always return a" do
-    It::Link.new("http://www.rubyonrails.org/").tag.should == :a
+    It::Link.new("http://www.rubyonrails.org/").tag_name.should == :a
+  end
+end
+
+describe It::Link, '#process' do
+  it "should return a link with the options set and the content as label" do
+    It::Link.new("http://www.rubyonrails.org", :target => "_blank").process("Rails").should == '<a href="http://www.rubyonrails.org" target="_blank">Rails</a>'
   end
 end
