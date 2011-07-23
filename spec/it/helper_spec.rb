@@ -53,6 +53,11 @@ describe It::Helper, "#it" do
     @view.it("test4", :link => It.link("http://www.rubyonrails.org"), :position => "middle").should == 'I\'m containing a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
   end
   
+  it "should allow Intergers as normal interpolation" do
+    I18n.backend.store_translations(:en, :test5 => "Hello %{name}.")
+    @view.it("test5", :name => 2).should == 'Hello 2.'
+  end
+  
   it "should escape the HTML in normal interpolations" do
     I18n.backend.store_translations(:en, :test5 => "Hello %{name}.")
     @view.it("test5", :name => '<a href="http://evil.haxor.com">victim</a>').should == 'Hello &lt;a href=&quot;http://evil.haxor.com&quot;&gt;victim&lt;/a&gt;.'
@@ -66,5 +71,14 @@ describe It::Helper, "#it" do
   it "should allow interpolations inside of links" do
     I18n.backend.store_translations(:en, :test6 => "Did you read our %{link:nice %{article}}?")
     @view.it("test6", :link => It.link("/article/2"), :article => "article").should == 'Did you read our <a href="/article/2">nice article</a>?'
+  end
+  
+  it "should raise a KeyError, if the key was not given" do
+    expect { @view.it("test1", :blubb => true) }.to raise_error(KeyError, "key{link} not found")
+  end
+  
+  it "should raise an ArgumentError, if a String was given for an interpolation with argument" do
+    I18n.backend.store_translations(:en, :test7 => "Sign up %{asdf:here}!")
+    expect { @view.it("test7", :asdf => "Heinz") }.to raise_error(ArgumentError, "key{asdf} has an argument, so it cannot resolved with a String")
   end
 end

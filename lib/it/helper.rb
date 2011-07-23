@@ -9,7 +9,11 @@ module It
       while translation =~ /%\{[^{}}]+\}/
         translation.gsub!(/%\{[^{}}]+\}/) do |interpolation|
           token, label = interpolation[2..-2].split(":", 2)
-          if label
+          if !options.has_key?(token)
+            raise KeyError, "key{#{token}} not found"
+          elsif label && !options[token].is_a?(It::Tag)
+            raise ArgumentError, "key{#{token}} has an argument, so it cannot resolved with a #{options[token].class}"
+          elsif label
             options[token].process(raw label)
           else
             h(options[token])
