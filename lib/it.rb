@@ -6,12 +6,23 @@ ActiveSupport.on_load(:action_view) do
   include It::Helper
 end
 
+# Namespace of the gem.
 module It
+  # Creates a new link to be used in +it+.
+  # 
+  # * +href+: The url for the link. You may specify it as a String or as a named route like +article_path+. It's not possible to specify
+  #   a Hash like <code>{:controller => "articles", :action => "index"}</code> directly. Use the +url_for+ helper, if you would like to specify your
+  #   links like that.
+  # * +options+: The options as an Hash. Use them like you would with +link_to+. <em>(optional)</em>
   def self.link(href, options = {})
     It::Link.new(href, options)
   end
   
-  def self.tag(tag, options = {})
-    It::Tag.new(tag, options)
+  # Creates a new tag to be used in +it+.
+  # 
+  # * +tag_name+: The name of the tag as a Symbol or String.
+  # * +options+: The options will become attributes on the tag. <em>(optional)</em>
+  def self.tag(tag_name, options = {})
+    It::Tag.new(tag_name, options)
   end
 end

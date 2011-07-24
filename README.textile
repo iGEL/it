@@ -1,12 +1,69 @@
-h1. What is @it@ going to be?
+h1. What is *it*?
 
-@it@ will be the rewrite of my gem "i18n_link":https://github.com/iGEL/i18n_link, but it will support all kinds of HTML tags. It will have a cleaner DSL.
-
-Here an example, how I think it'll work:
+I18n is baked right into Rails, and it's great. But if you want to place markup or links inside your translated copies, things get a little messy. You need to specify the label of your links separately from the rest of the copy. Writing HTML in your translations is even worse.
 
 <pre><code>en:
-  copy: "Did you read the %{guide:Rails I18n guide}? It has %{strong:more than %{advises} useful advises}.</code></pre>
+  copy: "If you are already registered, %{login_link}!"
+  copy_login_link: "please sign in"</code></pre>
 
-<pre><code><%=it "copy", guide: It.link("http://guides.rubyonrails.org/i18n.html", target: "_blank"), strong: It.tag(:strong), advices: 100 %></code></pre>
+<pre><code><%=raw t("copy", login: link_to(t("copy_login_link"), login_path)) %></code></pre>
 
-Interpolations named @link@, starting with @link_@ or ending with @_link@ will be converted to links, if the argument is a link or Hash.
+Wouldn't it be much nicer and easier to understand for your translator to have the whole copy in single label? *it* lets you do that:
+
+<pre><code>en:
+  copy: "If you are already registered, %{login_link:please sign in}!"</code></pre>
+
+<pre><code><%=it "copy", login_link: login_path %></code></pre>
+
+You may have noticed in the example above, that *it* doesn't require @raw@ anymore. Of course, all HTML in the translation gets properly escaped, so you don't have to worry about XSS.
+
+h2. Installation
+
+Just add the following line to your Gemfile & run @bundle install@:
+
+<pre><code>gem 'it'</code></pre>
+
+h2. Usage
+
+You may have as many links inside your translations as you like, and normal interpolations are possible as well:
+
+<pre><code>en:
+  copy: "Did you read the %{guide:Rails I18n guide}? It has more than %{advises} useful advises. You may fork the repo at {repo:github}."</code></pre>
+
+<pre><code><%=it "copy", guide: It.link("http://guides.rubyonrails.org/i18n.html"), advices: 100, repo: It.link("https://github.com/lifo/docrails/tree/master/railties/guides") %></code></pre>
+
+As you see above, unless the interpolation name is @link@ or starts with @_link@ or ends with @_link@, you need to call @It.link@ to create a link. The advantage of @It.link@: You may specify options like you would with @link_to@:
+
+<pre><code><%=it "copy", guide: It.link("http://guides.rubyonrails.org/i18n.html", target: '_blank', class: "important") %></code></pre>
+
+You may pass any kind of object accepted by @link_to@ as the link target, so your loved named routes like @article_path(:id => article.id)@ will all work fine.
+
+Want to introduce some markup into your sentences? *it* will help you:
+
+<pre><code>en:
+  advantages: There are %{b:many advantages} for registered users!</code></pre>
+
+<pre><code><%=it "advantages", b: It.tag(:b, class: "red") %></code></pre>
+
+Even nested interpolations are possible:
+
+<pre><code>en:
+  copy: "Want to contact %{user}%? %{link:send %{b:%{user} a message}}!"</code></pre>
+
+<pre><code><%=it "copy", link: "mailto:igel@igels.net", user: 'iGEL', :b => It.tag(:b) %></code></pre>
+
+h2. isit18.com?
+
+Sorry, I'm using Ruby 1.9.2 at the time of writing and didn't took the time to port it back to Ruby 1.8. You either might update to Ruby 1.9 as well or make the port yourself. It's probably a mater of minutes to do so, since the lib is small. Send me a pull request, if you have a port!
+
+h2. Abandoned & outdated?
+
+Everybody hates old and outdated gems, which don't work on with the latest Rails or Ruby version or haven't been updated for ages. Sadly, rubygems is full of such gems. If you improved *it* send me a pull request. If I have not time to support the lib anymore, I will happily hand the project over to a new maintainer.
+
+h2. Broken English?
+
+I'm not a native speaker, so you'll probably find some spelling errors or clumsy sentences above. If you do, please send me a message.
+
+h2. Like it?
+
+Like it? Flattr it! !http://api.flattr.com/button/flattr-badge-large.png!:http://flattr.com/thing/351483/it-HTML-tags-for-your-translations
