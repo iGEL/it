@@ -19,6 +19,8 @@ module It
             raise ArgumentError, "key{#{token}} has an argument, so it cannot resolved with a #{options[token].class}"
           elsif label
             options[token].process(raw label)
+          elsif options[token].is_a?(It::Tag)
+            options[token].process
           else
             h(options[token])
           end

@@ -96,4 +96,9 @@ describe It::Helper, "#it" do
     I18n.backend.store_translations(:en, :test8 => "Sign up %{link_to_register:here}!")
     @view.it("test8", :link_to_register => "/register").should == 'Sign up <a href="/register">here</a>!'
   end
+  
+  it "should work with tags without arguments" do
+    I18n.backend.store_translations(:en, :test9 => "We can %{br} do line breaks")
+    @view.it("test9", :br => It.tag(:br)).should == 'We can <br /> do line breaks'
+  end
 end
