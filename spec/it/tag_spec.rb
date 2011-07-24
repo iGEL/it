@@ -17,7 +17,7 @@ describe It::Tag, '.new' do
   end
   
   it "should accept an options Hash" do
-    expect { It::Tag.new(:b, class: "very_bold") }.not_to raise_error
+    expect { It::Tag.new(:b, :class => "very_bold") }.not_to raise_error
   end
   
   it "should raise a TypeError if called with a String" do
@@ -41,7 +41,7 @@ end
 
 describe It::Tag, '#options' do
   it "should return the options with symbolized keys" do
-    It::Tag.new(:i, "id" => "cool", :class => "classy").options.should == {id: "cool", class: "classy"}
+    It::Tag.new(:i, "id" => "cool", :class => "classy").options.should == {:id => "cool", :class => "classy"}
   end
 end
 

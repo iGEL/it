@@ -31,7 +31,7 @@ describe It, '.tag' do
   end
   
   it "should accept two params" do
-    expect { It.tag(:b, class: "very_bold") }.not_to raise_error
+    expect { It.tag(:b, :class => "very_bold") }.not_to raise_error
   end
   
   it "should raise an ArgumentError if called with three params" do

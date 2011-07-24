@@ -54,7 +54,7 @@ Even nested interpolations are possible:
 
 h2. isit18.com?
 
-Sorry, I'm using Ruby 1.9.2 at the time of writing and didn't took the time to port it back to Ruby 1.8. You either might update to Ruby 1.9 as well or make the port yourself. It's probably a mater of minutes to do so, since the lib is small. Send me a pull request, if you have a port!
+Well, the specs pass on 1.8.7, but I never tried it in a real app. Report any issues on "github":https://github.com/iGEL/it/issues
 
 h2. Abandoned & outdated?
 
