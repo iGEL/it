@@ -3,7 +3,7 @@ module It
   class Link < Tag
     include ActionView::Helpers::UrlHelper
     
-    # See It.link for details
+    # See It.link for details. You can do everything there and save 6 characters.
     def initialize(href, options = {})
       raise TypeError, "Invalid href given" unless href.is_a?(Hash) || href.is_a?(String)
       super(:a, options)
