@@ -81,4 +81,19 @@ describe It::Helper, "#it" do
     I18n.backend.store_translations(:en, :test7 => "Sign up %{asdf:here}!")
     expect { @view.it("test7", :asdf => "Heinz") }.to raise_error(ArgumentError, "key{asdf} has an argument, so it cannot resolved with a String")
   end
+  
+  it "should allow Strings, if the interpolation name is link" do
+    I18n.backend.store_translations(:en, :test8 => "Sign up %{link:here}!")
+    @view.it("test8", :link => "/register").should == 'Sign up <a href="/register">here</a>!'
+  end
+  
+  it "should allow Strings, if the interpolation name ends with _link" do
+    I18n.backend.store_translations(:en, :test8 => "Sign up %{register_link:here}!")
+    @view.it("test8", :register_link => "/register").should == 'Sign up <a href="/register">here</a>!'
+  end
+  
+  it "should allow Strings, if the interpolation name starts with link_" do
+    I18n.backend.store_translations(:en, :test8 => "Sign up %{link_to_register:here}!")
+    @view.it("test8", :link_to_register => "/register").should == 'Sign up <a href="/register">here</a>!'
+  end
 end

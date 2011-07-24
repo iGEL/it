@@ -9,6 +9,10 @@ module It
       while translation =~ /%\{[^{}}]+\}/
         translation.gsub!(/%\{[^{}}]+\}/) do |interpolation|
           token, label = interpolation[2..-2].split(":", 2)
+          if (token == "link" || token.ends_with?("_link") || token.starts_with?("link_")) && (options[token].is_a?(String) || options[token].is_a?(Hash))
+            options[token] = It::Link.new(options[token])
+          end
+          
           if !options.has_key?(token)
             raise KeyError, "key{#{token}} not found"
           elsif label && !options[token].is_a?(It::Tag)
