@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Johannes Barre"]
-  s.date = %q{2011-07-23}
+  s.date = Time.now.strftime("%Y-%m-%d")
   s.email = %q{igel@igels.net}
   s.extra_rdoc_files = [
     "README.textile"
