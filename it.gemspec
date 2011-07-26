@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     "spec/it/helper_spec.rb",
     "spec/it/link_spec.rb",
     "spec/it/tag_spec.rb",
+    "spec/it_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{https://github.com/igel/it}
@@ -29,6 +30,9 @@ Gem::Specification.new do |s|
   s.summary = %q{A helper for links and other html tags in your translations}
   s.test_files = [
     "spec/it/helper_spec.rb",
+    "spec/it/link_spec.rb",
+    "spec/it/tag_spec.rb",
+    "spec/it_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.add_dependency('actionpack', '>= 3.0.0')
