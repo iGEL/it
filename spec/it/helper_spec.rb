@@ -101,4 +101,10 @@ describe It::Helper, "#it" do
     I18n.backend.store_translations(:en, :test9 => "We can %{br} do line breaks")
     @view.it("test9", :br => It.tag(:br)).should == 'We can <br /> do line breaks'
   end
+  
+  it 'should support dot-prefixed keys' do
+    I18n.backend.store_translations(:en, :widgets => { :show => { :all_widgets => "See %{widgets_link:all widgets}" } })
+    @view.instance_variable_set(:"@_virtual_path", "widgets/show")
+    @view.it('.all_widgets', :widgets_link => '/widgets').should == 'See <a href="/widgets">all widgets</a>'
+  end
 end
