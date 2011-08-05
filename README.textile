@@ -52,7 +52,7 @@ Even nested interpolations are possible:
 
 <pre><code><%=it "copy", link: "mailto:igel@igels.net", user: 'iGEL', :b => It.tag(:b) %></code></pre>
 
-If you would like to use the same translations in your html and plain text mails, you will like the +It.plain+ method:
+If you would like to use the same translations in your html and plain text mails, you will like the @It.plain@ method:
 <pre><code>en:
   mail_copy: "Do you like %{link:Rails}?"</code></pre>
 
@@ -63,7 +63,7 @@ Plain mail:
 <%= it "mail_copy", link: It.plain("%s[http://www.rubyonrails.org/]") %>
 </code></pre>
 
-The +%s+ will be replaced with the label, in the example with Rails. You could provide any other string containing +%s+. The default is just +%s+, so it will return only the label itself.
+The @%s@ will be replaced with the label, in the example with Rails. You could provide any other string containing @%s@. The default is just @%s@, so it will return only the label itself.
 
 h2. isit18.com?
 
