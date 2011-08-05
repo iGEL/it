@@ -30,6 +30,10 @@ describe It::Helper, "#it" do
     @view.it("test1", :link => It.link("http://www.rubyonrails.org", :target => "_blank")).should == 'I\'m containing a <a href="http://www.rubyonrails.org" target="_blank">link to Rails</a> in the middle.'
   end
   
+  it "should support the plain thing" do
+    @view.it("test1", :link => It.plain("%s[http://www.rubyonrails.org]")).should == 'I\'m containing a link to Rails[http://www.rubyonrails.org] in the middle.'
+  end
+  
   it "should parse other tags as well" do
     @view.it("test1", :link => It.tag(:b, :class => "classy")).should == 'I\'m containing a <b class="classy">link to Rails</b> in the middle.'
   end

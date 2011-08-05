@@ -17,7 +17,7 @@ describe It, '.link' do
   end
   
   it "should raise ArgumentError, if called with three params" do
-    expect { It::Link.new("http://www.rubyonrails.org/", {}, :blubb) }.to raise_error(ArgumentError)
+    expect { It.link("http://www.rubyonrails.org/", {}, :blubb) }.to raise_error(ArgumentError)
   end
 end
 
@@ -36,5 +36,23 @@ describe It, '.tag' do
   
   it "should raise an ArgumentError if called with three params" do
     expect { It.tag(:b, {}, :blubb) }.to raise_error(ArgumentError)
+  end
+end
+
+describe It, '.plain' do
+  it "should return an It::Plain object" do
+    It.plain.class.should == It::Plain
+  end
+  
+  it "should work without params" do
+    expect { It.plain }.not_to raise_error
+  end
+  
+  it "should accept one param" do
+    expect { It.plain("%s[http://www.rubyonrails.org/]") }.not_to raise_error
+  end
+  
+  it "should raise ArgumentError, if called with two params" do
+    expect { It.plain("%s[http://www.rubyonrails.org/]", :blubb) }.to raise_error(ArgumentError)
   end
 end

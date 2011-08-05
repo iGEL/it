@@ -1,5 +1,6 @@
 require 'it/tag'
 require 'it/link'
+require 'it/plain'
 require 'it/helper'
 
 ActiveSupport.on_load(:action_view) do
@@ -16,6 +17,14 @@ module It
   # * +options+: The options as an Hash. Use them like you would with +link_to+. <em>(optional)</em>
   def self.link(href, options = {})
     It::Link.new(href, options)
+  end
+  
+  # Creates a new plain replacement to be used in +it+.
+  # 
+  # * +template+: A string to be used as the template. An example would be <code>"%s[http://www.rubyonrails.org]"</code>. Defaults to 
+  #   <code>"%s"</code>. <em>(optional)</em>
+  def self.plain(template = "%s")
+    It::Plain.new(template)
   end
   
   # Creates a new tag to be used in +it+.

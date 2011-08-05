@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{it}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Johannes Barre"]
@@ -18,9 +18,11 @@ Gem::Specification.new do |s|
     "lib/it/helper.rb",
     "lib/it/tag.rb",
     "lib/it/link.rb",
+    "lib/it/plain.rb",
     "spec/it/helper_spec.rb",
     "spec/it/link_spec.rb",
     "spec/it/tag_spec.rb",
+    "spec/it/plain_spec.rb",
     "spec/it_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -32,6 +34,7 @@ Gem::Specification.new do |s|
     "spec/it/helper_spec.rb",
     "spec/it/link_spec.rb",
     "spec/it/tag_spec.rb",
+    "spec/it/plain_spec.rb",
     "spec/it_spec.rb",
     "spec/spec_helper.rb"
   ]
