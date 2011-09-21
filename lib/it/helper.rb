@@ -70,7 +70,7 @@ module It
           elsif label # Normal tags
             options[token].process(raw label)
           elsif options[token].is_a?(It::Tag) # Empty tag
-            options[token].process
+            options[token].process ''
           else # Normal interpolations, as I18n.t would do it.
             h(options[token])
           end
