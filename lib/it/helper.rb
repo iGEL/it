@@ -34,50 +34,13 @@ module It
     # <code><b></code>, <code><i></code>, <code><em></code> or <code><strong></code>.
     #
     # It's currently not possible to specify your links as an Hash. Use the +url_for+ helper, if you want to specify your
-    # link target as an Hash. Also, it's not possible by default to use this helper from inside your controllers. Eighter
-    # you google how to use helpers inside your controllers or you push only the arguments for +it+ into the flash and parse
-    # it once you parse the flash in the view:
+    # link target as an Hash.
     #
-    #   # Controller:
-    #   flash[:message] = ["articles.update.success", {:article_link => It.link(article_path(article))}]
-    #
-    #   # View (or layout)
-    #   <% if flash[:message].is_a?(Array) %>
-    #     <%= it(flash[:message].first, flash[:message].last) %>
-    #   <% else %>
-    #     <%= flash[:message] %>
-    #   <% end %>
+    # If you need to use it outside of your views, use +It.it+.
     #
     def it(identifier, options = {})
       options.stringify_keys!
-      # We want the escaped String, not an ActiveSupport::SafeBuffer
-      translation = String.new(h(t(identifier, :locale => options.delete("locale"))))
-
-      # For deep nesting, we repeat the process until we have no interpolations anymore
-      while translation =~ /%\{[^{}}]+\}/
-        translation.gsub!(/%\{[^{}}]+\}/) do |interpolation|
-          token, label = interpolation[2..-2].split(":", 2)
-
-          # Convert tokens with String arguments into It::Links, if they are named link, link_* or *_link
-          if (token == "link" || token.ends_with?("_link") || token.starts_with?("link_")) && (options[token].is_a?(String) || options[token].is_a?(Hash))
-            options[token] = It::Link.new(options[token])
-          end
-
-          if !options.has_key?(token)
-            raise KeyError, "key{#{token}} not found"
-          elsif label && !options[token].is_a?(It::Tag)
-            raise ArgumentError, "key{#{token}} has an argument, so it cannot resolved with a #{options[token].class}"
-          elsif label # Normal tags
-            options[token].process(raw label)
-          elsif options[token].is_a?(It::Tag) # Empty tag
-            options[token].process
-          else # Normal interpolations, as I18n.t would do it.
-            h(options[token])
-          end
-        end
-      end
-
-      raw translation
+      It.process(t(identifier, :locale => options.delete("locale")), options)
     end
   end
 end
