@@ -40,7 +40,7 @@ module It
     #
     def it(identifier, options = {})
       options.stringify_keys!
-      It.process(t(identifier, :locale => options.delete("locale")), options)
+      It.process(t(identifier, :locale => options["locale"]), options)
     end
   end
 end

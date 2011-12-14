@@ -115,4 +115,22 @@ describe It::Helper, "#it" do
   it 'should support the locale option' do
     @view.it('test1', :locale => "de", :link => It.link("http://www.rubyonrails.org")).should == 'Ich enthalte einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.'
   end
+
+  context "With a pluralized translation" do
+    before do
+      I18n.backend.store_translations(:en, :test10 => {:zero => "You have zero messages.", :one => "You have %{link:one message}.", :other => "You have %{link:%{count} messages}."})
+    end
+
+    it 'should work with count = 0' do
+      @view.it("test10", :count => 0, :link => "/messages").should == 'You have zero messages.'
+    end
+
+    it 'should work with count = 1' do
+      @view.it("test10", :count => 1, :link => "/messages").should == 'You have <a href="/messages">one message</a>.'
+    end
+
+    it 'should work with count > 1' do
+      @view.it("test10", :count => 2, :link => "/messages").should == 'You have <a href="/messages">2 messages</a>.'
+    end
+  end
 end

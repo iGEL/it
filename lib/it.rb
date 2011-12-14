@@ -43,6 +43,9 @@ module It
 
   private
   def self.process(string, options)
+    # Handle pluralization
+    string = I18n.backend.send(:pluralize, options["locale"] || I18n.locale, string, options["count"]) if string.is_a?(Hash) && options["count"]
+
     # We want the escaped String, not an ActiveSupport::SafeBuffer
     translation = String.new(ERB::Util.h(string))
 
