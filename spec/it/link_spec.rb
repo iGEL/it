@@ -31,12 +31,12 @@ end
 
 describe It::Link, '#tag_name' do
   it "should always return a" do
-    It::Link.new("http://www.rubyonrails.org/").tag_name.should == :a
+    expect(It::Link.new("http://www.rubyonrails.org/").tag_name).to eq(:a)
   end
 end
 
 describe It::Link, '#process' do
   it "should return a link with the options set and the content as label" do
-    It::Link.new("http://www.rubyonrails.org", :target => "_blank").process("Rails").should == '<a href="http://www.rubyonrails.org" target="_blank">Rails</a>'
+    expect(It::Link.new("http://www.rubyonrails.org", :target => "_blank").process("Rails")).to eq('<a href="http://www.rubyonrails.org" target="_blank">Rails</a>')
   end
 end

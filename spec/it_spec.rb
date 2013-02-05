@@ -6,13 +6,13 @@ require 'it'
 describe It, '.it' do
   it "should translate inside the controller as well" do
     I18n.backend.store_translations(:en, :test1 => "I have a %{link:link to Rails} in the middle.")
-    It.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
+    expect(It.it("test1", :link => It.link("http://www.rubyonrails.org"))).to eq('I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.')
   end
 end
 
 describe It, '.link' do
   it "should return an It::Link object" do
-    It.link("https://www.github.com").class.should == It::Link
+    expect(It.link("https://www.github.com").class).to eq(It::Link)
   end
 
   it "should accept one param" do
@@ -30,7 +30,7 @@ end
 
 describe It, '.tag' do
   it "should return an It::Tag object" do
-    It.tag(:b).class.should == It::Tag
+    expect(It.tag(:b).class).to eq(It::Tag)
   end
 
   it "should work with a param" do
@@ -48,7 +48,7 @@ end
 
 describe It, '.plain' do
   it "should return an It::Plain object" do
-    It.plain.class.should == It::Plain
+    expect(It.plain.class).to eq(It::Plain)
   end
 
   it "should work without params" do

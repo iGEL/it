@@ -21,10 +21,10 @@ end
 
 describe It::Plain, '#process' do
   it "should return 'Ruby on Rails', if no param was given" do
-    It::Plain.new.process("Ruby on Rails").should == 'Ruby on Rails'
+    expect(It::Plain.new.process("Ruby on Rails")).to eq('Ruby on Rails')
   end
   
   it "should return 'Ruby on Rails[http://www.rubyonrails.org/]'" do
-    It::Plain.new("%s[http://www.rubyonrails.org/]").process("Ruby on Rails").should == 'Ruby on Rails[http://www.rubyonrails.org/]'
+    expect(It::Plain.new("%s[http://www.rubyonrails.org/]").process("Ruby on Rails")).to eq('Ruby on Rails[http://www.rubyonrails.org/]')
   end
 end

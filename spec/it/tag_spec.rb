@@ -31,38 +31,38 @@ end
 
 describe It::Tag, '#tag_name' do
   it "should return the tag as a Symbol if given as a Symbol" do
-    It::Tag.new(:i).tag_name.should == :i
+    expect(It::Tag.new(:i).tag_name).to eq(:i)
   end
   
   it "should return the tag_name as a Symbol if given as a String" do
-    It::Tag.new("i").tag_name.should == :i
+    expect(It::Tag.new("i").tag_name).to eq(:i)
   end
 end
 
 describe It::Tag, '#options' do
   it "should return the options with symbolized keys" do
-    It::Tag.new(:i, "id" => "cool", :class => "classy").options.should == {:id => "cool", :class => "classy"}
+    expect(It::Tag.new(:i, "id" => "cool", :class => "classy").options).to eq({:id => "cool", :class => "classy"})
   end
 end
 
 describe It::Tag, '#process' do
   it "should return a tag with the options as attributes and the param as content" do
-    It::Tag.new(:i, "id" => "cool", "class" => "classy").process("some text").should == '<i class="classy" id="cool">some text</i>'
+    expect(It::Tag.new(:i, "id" => "cool", "class" => "classy").process("some text")).to eq('<i class="classy" id="cool">some text</i>')
   end
   
   it "should be marked as html safe" do
-    It::Tag.new(:i).process("some text").html_safe.should be_true
+    expect(It::Tag.new(:i).process("some text").html_safe).to be_true
   end
   
   it "should escape HTML" do
-    It::Tag.new(:i).process("some text & <b>html</b>").should == '<i>some text &amp; &lt;b&gt;html&lt;/b&gt;</i>'
+    expect(It::Tag.new(:i).process("some text & <b>html</b>")).to eq('<i>some text &amp; &lt;b&gt;html&lt;/b&gt;</i>')
   end
   
   it "should not escape strings marked as HTML safe" do
-    It::Tag.new(:i).process("some text & <b>html</b>".html_safe).should == '<i>some text & <b>html</b></i>'
+    expect(It::Tag.new(:i).process("some text & <b>html</b>".html_safe)).to eq('<i>some text & <b>html</b></i>')
   end
   
   it "should return an empty tag, if no content is provided" do
-    It::Tag.new(:br, "id" => "cool").process.should == '<br id="cool" />'
+    expect(It::Tag.new(:br, "id" => "cool").process).to eq('<br id="cool" />')
   end
 end
