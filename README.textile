@@ -1,3 +1,5 @@
+"!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it "!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it
+
 h1. What is *it*?
 
 I18n is baked right into Rails, and it's great. But if you want to place markup or links inside your translated copies, things get a little messy. You need to specify the label of your links separately from the rest of the copy. Writing HTML in your translations is even worse.
@@ -76,7 +78,3 @@ Everybody hates old and outdated gems, which don't work on with the latest Rails
 h2. Broken English?
 
 I'm not a native speaker, so you'll probably find some spelling errors or clumsy sentences above. If you do, please send me a message.
-
-h2. Like it?
-
-Like it? Flattr it! !http://api.flattr.com/button/flattr-badge-large.png!:http://flattr.com/thing/351483/it-HTML-tags-for-your-translations
