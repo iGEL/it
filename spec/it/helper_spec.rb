@@ -5,8 +5,8 @@ require 'it'
 
 describe It::Helper, "#it" do
   before do
-    I18n.backend.store_translations(:en, :test1 => "I'm containing a %{link:link to Rails} in the middle.")
-    I18n.backend.store_translations(:de, :test1 => "Ich enthalte einen %{link:Link zu Rails} in der Mitte.")
+    I18n.backend.store_translations(:en, :test1 => "I have a %{link:link to Rails} in the middle.")
+    I18n.backend.store_translations(:de, :test1 => "Ich habe einen %{link:Link zu Rails} in der Mitte.")
 
     @view = ActionView::Base.new
     @controller = ActionController::Base.new
@@ -18,24 +18,24 @@ describe It::Helper, "#it" do
   end
 
   it "should insert the link into the string" do
-    @view.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'I\'m containing a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
+    @view.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
   end
 
   it "should insert the link into the German translation" do
     I18n.locale = :de
-    @view.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'Ich enthalte einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.'
+    @view.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'Ich habe einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.'
   end
 
   it "should allow link options to be set" do
-    @view.it("test1", :link => It.link("http://www.rubyonrails.org", :target => "_blank")).should == 'I\'m containing a <a href="http://www.rubyonrails.org" target="_blank">link to Rails</a> in the middle.'
+    @view.it("test1", :link => It.link("http://www.rubyonrails.org", :target => "_blank")).should == 'I have a <a href="http://www.rubyonrails.org" target="_blank">link to Rails</a> in the middle.'
   end
 
   it "should support the plain thing" do
-    @view.it("test1", :link => It.plain("%s[http://www.rubyonrails.org]")).should == 'I\'m containing a link to Rails[http://www.rubyonrails.org] in the middle.'
+    @view.it("test1", :link => It.plain("%s[http://www.rubyonrails.org]")).should == 'I have a link to Rails[http://www.rubyonrails.org] in the middle.'
   end
 
   it "should parse other tags as well" do
-    @view.it("test1", :link => It.tag(:b, :class => "classy")).should == 'I\'m containing a <b class="classy">link to Rails</b> in the middle.'
+    @view.it("test1", :link => It.tag(:b, :class => "classy")).should == 'I have a <b class="classy">link to Rails</b> in the middle.'
   end
 
   it "should mark the result as html safe" do
@@ -53,11 +53,11 @@ describe It::Helper, "#it" do
   end
 
   it "should allow normal I18n interpolations" do
-    I18n.backend.store_translations(:en, :test4 => "I'm containing a %{link:link to Rails} in the %{position}.")
-    @view.it("test4", :link => It.link("http://www.rubyonrails.org"), :position => "middle").should == 'I\'m containing a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
+    I18n.backend.store_translations(:en, :test4 => "I have a %{link:link to Rails} in the %{position}.")
+    @view.it("test4", :link => It.link("http://www.rubyonrails.org"), :position => "middle").should == 'I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
   end
 
-  it "should allow Intergers as normal interpolation" do
+  it "should allow Integers as normal interpolation" do
     I18n.backend.store_translations(:en, :test5 => "Hello %{name}.")
     @view.it("test5", :name => 2).should == 'Hello 2.'
   end
@@ -108,12 +108,13 @@ describe It::Helper, "#it" do
 
   it 'should support dot-prefixed keys' do
     I18n.backend.store_translations(:en, :widgets => { :show => { :all_widgets => "See %{widgets_link:all widgets}" } })
-    @view.instance_variable_set(:"@_virtual_path", "widgets/show")
+    @view.instance_variable_set(:"@_virtual_path", "widgets/show") # For Rails 3.0
+    @view.instance_variable_set(:"@virtual_path", "widgets/show") # For Rails 3.1, 3.2 and probably 4.0
     @view.it('.all_widgets', :widgets_link => '/widgets').should == 'See <a href="/widgets">all widgets</a>'
   end
 
   it 'should support the locale option' do
-    @view.it('test1', :locale => "de", :link => It.link("http://www.rubyonrails.org")).should == 'Ich enthalte einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.'
+    @view.it('test1', :locale => "de", :link => It.link("http://www.rubyonrails.org")).should == 'Ich habe einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.'
   end
 
   context "With a pluralized translation" do

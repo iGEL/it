@@ -5,8 +5,8 @@ require 'it'
 
 describe It, '.it' do
   it "should translate inside the controller as well" do
-    I18n.backend.store_translations(:en, :test1 => "I'm containing a %{link:link to Rails} in the middle.")
-    It.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'I\'m containing a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
+    I18n.backend.store_translations(:en, :test1 => "I have a %{link:link to Rails} in the middle.")
+    It.it("test1", :link => It.link("http://www.rubyonrails.org")).should == 'I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.'
   end
 end
 
