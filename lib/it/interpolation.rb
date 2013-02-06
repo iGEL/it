@@ -10,11 +10,9 @@ module It
     end
     
     def process
-      if !values.has_key?(key)
-        raise KeyError, "key{#{key}} not found"
-      elsif label && !values[key].is_a?(It::Tag)
-        raise ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{values[key].class}"
-      elsif label # Normal tags
+      check_input_values
+      
+      if label # Normal tags
         values[key].process(label.html_safe)
       elsif values[key].is_a?(It::Tag) # Empty tag
         values[key].process
@@ -26,8 +24,16 @@ module It
     private
     # Convert keys with String arguments into It::Links, if they are named link, link_* or *_link
     def convert_links
-      if (key == 'link' || key.ends_with?('_link') || key.starts_with?('link_')) && (values[key].is_a?(String) || values[key].is_a?(Hash))
+      if key =~ /(\Alink\Z|_link\Z|\Alink_)/ && values[key].is_a?(String)
         self.values[key] = It::Link.new(values[key])
+      end
+    end
+
+    def check_input_values
+      if !values.has_key?(key)
+        raise KeyError, "key{#{key}} not found"
+      elsif label && !values[key].is_a?(It::Tag)
+        raise ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{values[key].class}"
       end
     end
   end
