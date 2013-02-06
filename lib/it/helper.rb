@@ -40,7 +40,7 @@ module It
     #
     def it(identifier, options = {})
       options.stringify_keys!
-      It.process(t(identifier, :locale => options["locale"]), options)
+      It::Parser.new(t(identifier, :locale => options["locale"]), options).process
     end
   end
 end

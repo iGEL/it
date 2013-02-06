@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    it (0.2.3)
+    it (0.2.4)
       actionpack (>= 3.0.0)
 
 GEM
