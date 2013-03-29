@@ -1,4 +1,4 @@
-"!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it "!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it
+"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Specs pass on Ruby 1.8.7, 1.9.2, 1.9.3, 2.0.0, Rubinius and Jruby)
 
 h1. What is *it*?
 
@@ -66,10 +66,6 @@ Plain mail:
 </code></pre>
 
 The @%s@ will be replaced with the label, in the example with Rails. You could provide any other string containing @%s@. The default is just @%s@, so it will return only the label itself.
-
-h2. isit18.com?
-
-Well, the specs pass on 1.8.7, but I never tried it in a real app. Report any issues on "github":https://github.com/iGEL/it/issues
 
 h2. Abandoned & outdated?
 
