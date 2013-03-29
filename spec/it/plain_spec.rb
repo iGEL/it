@@ -11,7 +11,7 @@ describe It::Plain, '.new' do
   end
   
   it "should raise ArgumentError with 2 params" do
-    expect { It::Plain.new("asdf", "asdf")}.to raise_error(ArgumentError, "wrong number of arguments (2 for 1)")
+    expect { It::Plain.new("asdf", "asdf")}.to raise_error(ArgumentError)
   end
   
   it "should raise a TypeError, if the first param is not a String" do

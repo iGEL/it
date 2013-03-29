@@ -5,7 +5,7 @@ PATH
       actionpack (>= 3.0.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionpack (3.2.11)
       activemodel (= 3.2.11)
@@ -52,6 +52,7 @@ GEM
     tilt (1.3.3)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES

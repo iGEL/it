@@ -11,7 +11,7 @@ module It
     
     def process
       check_input_values
-      
+
       if label # Normal tags
         values[key].process(label.html_safe)
       elsif values[key].is_a?(It::Tag) # Empty tag
