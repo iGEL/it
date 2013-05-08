@@ -14,6 +14,7 @@ module It
   # It outside of your views. See documentation at Helper#it
   def self.it(identifier, options = {})
     options.stringify_keys!
+    options["locale"] ||= I18n.locale
     Parser.new(I18n.t(identifier, :locale => options["locale"]), options).process
   end
 
