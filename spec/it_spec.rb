@@ -8,6 +8,16 @@ describe It, '.it' do
     I18n.backend.store_translations(:en, test1: "I have a %{link:link to Rails} in the middle.")
     expect(It.it("test1", link: It.link("http://www.rubyonrails.org"))).to eq('I have a <a href="http://www.rubyonrails.org">link to Rails</a> in the middle.')
   end
+
+  it 'should use default key if no translation is present on specified key' do
+    I18n.backend.store_translations(:en, fallback: 'this is a fallback')
+    expect(It.it('a.missing.key', default: :fallback)).to eq('this is a fallback')
+  end
+
+  it 'should use default string if key is missing' do
+    expect(It.it('a.missing.key', default: 'this is a fallback string')).to eq('this is a fallback string')
+  end
+
 end
 
 describe It, '.link' do
