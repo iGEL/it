@@ -14,13 +14,13 @@ module It
   # It outside of your views. See documentation at Helper#it
   def self.it(identifier, options = {})
     options.stringify_keys!
-    Parser.new(I18n.t(identifier, :locale => (options["locale"] || I18n.locale)), options).process
+    Parser.new(I18n.t(identifier, locale: (options["locale"] || I18n.locale)), options).process
   end
 
   # Creates a new link to be used in +it+.
   #
   # * +href+: The url for the link. You may specify it as a String or as a named route like +article_path+. It's not possible to specify
-  #   a Hash like <code>{:controller => "articles", :action => "index"}</code> directly. Use the +url_for+ helper, if you would like to specify your
+  #   a Hash like <code>{controller: "articles", action: "index"}</code> directly. Use the +url_for+ helper, if you would like to specify your
   #   links like that.
   # * +options+: The options as an Hash. Use them like you would with +link_to+. <em>(optional)</em>
   def self.link(href, options = {})

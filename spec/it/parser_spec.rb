@@ -7,10 +7,10 @@ describe It::Parser do
       values = {'b' => It.tag(:b), 'link' => '/messages'}
       parser = It::Parser.new('You have %{b:%{link:new messages}}!', values)
 
-      return1 = double('It::Interpolation', :process => '<a href="/messages">new messages</a>')
+      return1 = double('It::Interpolation', process: '<a href="/messages">new messages</a>')
       It::Interpolation.should_receive(:new).with('%{link:new messages}', values).and_return(return1)
 
-      return2 = double('It::Interpolation', :process => '<b><a href="/messages">new messages</a></b>')
+      return2 = double('It::Interpolation', process: '<b><a href="/messages">new messages</a></b>')
       It::Interpolation.should_receive(:new).with('%{b:<a href="/messages">new messages</a>}', values).and_return(return2)
 
       expect(parser.process).to eq('You have <b><a href="/messages">new messages</a></b>!')
@@ -29,8 +29,8 @@ describe It::Parser do
     end
 
     it 'delegates pluralization to I18n' do
-      I18n.backend.stub(:pluralize).with('en', {:other => 'You have %{count} messages'}, 2) { 'This is the pluralized string' }
-      parser = It::Parser.new({:other => 'You have %{count} messages'}, 'locale' => 'en', 'count' => 2)
+      I18n.backend.stub(:pluralize).with('en', {other: 'You have %{count} messages'}, 2) { 'This is the pluralized string' }
+      parser = It::Parser.new({other: 'You have %{count} messages'}, 'locale' => 'en', 'count' => 2)
 
       expect(parser.process).to eq('This is the pluralized string')
     end

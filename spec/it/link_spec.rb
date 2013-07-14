@@ -9,7 +9,7 @@ describe It::Link, '.new' do
   end
   
   it "should accept a Hash as first param" do
-    expect { It::Link.new({:controller => "articles", :action => "index"}) }.not_to raise_error
+    expect { It::Link.new({controller: "articles", action: "index"}) }.not_to raise_error
   end
   
   it "should raise a TypeError if the first param is an Integer" do
@@ -17,7 +17,7 @@ describe It::Link, '.new' do
   end
   
   it "should accept options as a Hash" do
-    expect { It::Link.new("http://www.rubyonrails.org/", {:id => "identity", :class => "classy"}) }.not_to raise_error
+    expect { It::Link.new("http://www.rubyonrails.org/", {id: "identity", class: "classy"}) }.not_to raise_error
   end
   
   it "should raise a TypeError, if the options are a String" do
@@ -37,6 +37,6 @@ end
 
 describe It::Link, '#process' do
   it "should return a link with the options set and the content as label" do
-    expect(It::Link.new("http://www.rubyonrails.org", :target => "_blank").process("Rails")).to eq('<a href="http://www.rubyonrails.org" target="_blank">Rails</a>')
+    expect(It::Link.new("http://www.rubyonrails.org", target: "_blank").process("Rails")).to eq('<a href="http://www.rubyonrails.org" target="_blank">Rails</a>')
   end
 end

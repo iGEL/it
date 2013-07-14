@@ -1,4 +1,4 @@
-"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Specs pass on Ruby 1.8.7, 1.9.2, 1.9.3, 2.0.0, Rubinius and Jruby)
+"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Tests Ruby 1.9.2, 1.9.3, 2.0.0, HEAD, Rubinius and Jruby)
 
 h1. What is *it*?
 
@@ -38,7 +38,7 @@ As you see above, unless the interpolation name is @link@ or starts with @_link@
 
 <pre><code><%=it "copy", guide: It.link("http://guides.rubyonrails.org/i18n.html", target: '_blank', class: "important") %></code></pre>
 
-You may pass any kind of object accepted by @link_to@ as the link target, so your loved named routes like @article_path(:id => article.id)@ will all work fine.
+You may pass any kind of object accepted by @link_to@ as the link target, so your loved named routes like @article_path(id: article.id)@ will all work fine.
 
 Want to introduce some markup into your sentences? *it* will help you:
 
@@ -52,7 +52,7 @@ Even nested interpolations are possible:
 <pre><code>en:
   copy: "Want to contact %{user}%? %{link:send %{b:%{user} a message}}!"</code></pre>
 
-<pre><code><%=it "copy", link: "mailto:igel@igels.net", user: 'iGEL', :b => It.tag(:b) %></code></pre>
+<pre><code><%=it "copy", link: "mailto:igel@igels.net", user: 'iGEL', b: It.tag(:b) %></code></pre>
 
 If you would like to use the same translations in your html and plain text mails, you will like the @It.plain@ method:
 <pre><code>en:
