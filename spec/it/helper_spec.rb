@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'it'
+require 'active_support/core_ext/string'
 
 describe It::Helper, "#it" do
   before do
