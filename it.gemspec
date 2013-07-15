@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.authors = ["Johannes Barre"]
   s.date = Time.now.strftime("%Y-%m-%d")
   s.email = %q{igel@igels.net}
+  s.licenses = "MIT"
   s.extra_rdoc_files = %w(README.textile)
   s.files = %w(MIT-LICENSE README.textile Rakefile Gemfile) + Dir['**/*.rb']
   s.homepage = %q{https://github.com/igel/it}
