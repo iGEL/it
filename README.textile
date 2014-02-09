@@ -1,4 +1,4 @@
-"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Tests Ruby 1.9.2, 1.9.3, 2.0.0, Rubinius and Jruby)
+"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Tests Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.0, Rubinius and Jruby)
 
 h1. What is *it*?
 
