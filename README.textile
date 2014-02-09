@@ -54,6 +54,11 @@ Even nested interpolations are possible:
 
 <pre><code><%=it "copy", link: "mailto:igel@igels.net", user: 'iGEL', b: It.tag(:b) %></code></pre>
 
+To use *it* outside of the view layer, just use @It.it@:
+
+<pre><code>flash[:notice] = It.it('flash.invitation_accepted_already', link: root_path)
+</code></pre>
+
 If you would like to use the same translations in your html and plain text mails, you will like the @It.plain@ method:
 <pre><code>en:
   mail_copy: "Do you like %{link:Rails}?"</code></pre>
