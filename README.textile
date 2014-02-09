@@ -1,4 +1,4 @@
-"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it "!https://travis-ci.org/iGEL/it.png!":https://travis-ci.org/iGEL/it (Tests Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.0, Rubinius and Jruby)
+"!https://codeclimate.com/github/iGEL/it.png!":https://codeclimate.com/github/iGEL/it !https://travis-ci.org/iGEL/it.png?branch=master!:https://travis-ci.org/iGEL/it (Tests Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.0, Rubinius and Jruby)
 
 h1. What is *it*?
 
@@ -71,6 +71,14 @@ Plain mail:
 </code></pre>
 
 The @%s@ will be replaced with the label, in the example with Rails. You could provide any other string containing @%s@. The default is just @%s@, so it will return only the label itself.
+
+h2. Contribute
+
+# Fork it
+# Create a feature branch (`git checkout -b my-new-feature`)
+# Create one or more failing specs. I don't accept pull requests without spec changes.
+# Fix the specs by implementing the feature/bug fix
+# Push and open a pull request
 
 h2. Abandoned & outdated?
 
