@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.date = Time.now.strftime("%Y-%m-%d")
   s.email = %q{igel@igels.net}
   s.licenses = "MIT"
-  s.extra_rdoc_files = %w(README.textile)
-  s.files = %w(MIT-LICENSE README.textile Rakefile Gemfile) + Dir['**/*.rb']
+  s.extra_rdoc_files = %w(README.md)
+  s.files = %w(MIT-LICENSE README.md Rakefile Gemfile) + Dir['**/*.rb']
   s.homepage = %q{https://github.com/igel/it}
   s.require_paths = ["lib"]
   s.required_rubygems_version = ">= 1.3.6"
