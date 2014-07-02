@@ -40,7 +40,7 @@ describe It::Helper, "#it" do
   end
 
   it "should mark the result as html safe" do
-    expect(@view.it("test1", link: It.link("http://www.rubyonrails.org")).html_safe?).to be_true
+    expect(@view.it("test1", link: It.link("http://www.rubyonrails.org"))).to be_html_safe
   end
 
   it "should escape all html in the translation" do

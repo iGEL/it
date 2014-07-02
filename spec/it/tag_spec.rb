@@ -51,7 +51,7 @@ describe It::Tag, '#process' do
   end
 
   it "should be marked as html safe" do
-    expect(It::Tag.new(:i).process("some text").html_safe).to be_true
+    expect(It::Tag.new(:i).process("some text")).to be_html_safe
   end
 
   it "should escape HTML" do

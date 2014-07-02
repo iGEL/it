@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.summary = %q{A helper for links and other html tags in your translations}
   s.test_files = Dir['spec/**/*_spec.rb'] << 'spec/spec_helper.rb'
   s.add_dependency('actionpack', '>= 3.0.0')
-  s.add_development_dependency('rspec', '~> 2.11')
+  s.add_development_dependency('rspec', '~> 3.0')
   s.add_development_dependency('rake', '>= 10.0')
 end
