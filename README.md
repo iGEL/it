@@ -1,6 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/iGEL/it.png)](https://codeclimate.com/github/iGEL/it)
 [![Build Status](https://travis-ci.org/iGEL/it.svg?branch=markdown)](https://travis-ci.org/iGEL/it)
-(Tested against Ruby 2.1.1, 2.1.0, 2.0.0, 1.9.3, head, rbx-2.2.5, jruby-head and Rails 4.1, 4.0 and 3.2)
+(Tested against Ruby 2.1.2, 2.1.0, 2.0.0, 1.9.3, head, rbx-2.2.5, jruby-head and Rails 4.1, 4.0 and 3.2)
 
 What is **it**?
 =============
