@@ -1,14 +1,14 @@
 module It
   class Interpolation
     attr_accessor :key, :label, :values
-    
+
     def initialize(string, values)
       self.key, self.label = string[2..-2].split(':', 2)
       self.values = values
 
       convert_links
     end
-    
+
     def process
       check_input_values
 

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module It
   # The helper will be available in the views.
   module Helper

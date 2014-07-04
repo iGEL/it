@@ -4,7 +4,7 @@ module It
       raise TypeError, "expected a String, got #{template.class}" unless template.is_a?(String)
       @template = template
     end
-    
+
     def process(content)
       sprintf(@template, content)
     end
