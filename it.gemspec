@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{https://github.com/igel/it}
   s.require_paths = ["lib"]
   s.required_rubygems_version = ">= 1.3.6"
-  s.required_ruby_version = '>= 1.9.2'
+  s.required_ruby_version = '>= 1.9.3'
   s.summary = %q{A helper for links and other html tags in your translations}
   s.test_files = Dir['spec/**/*_spec.rb'] << 'spec/spec_helper.rb'
   s.add_dependency('actionpack', '>= 3.0.0')
