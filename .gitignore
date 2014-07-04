@@ -1,4 +1,5 @@
-.redcar
-*.sw*
 *.gem
-.idea
+*.lock
+.rbx
+.rspec
+coverage
