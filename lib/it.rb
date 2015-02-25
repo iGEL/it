@@ -14,7 +14,7 @@ module It
   # It outside of your views. See documentation at Helper#it
   def self.it(identifier, options = {})
     options = options.with_indifferent_access
-    passthrough_options = options.slice(:locale, :default)
+    passthrough_options = options.slice(:locale, :default, :scope, :count)
     Parser.new(I18n.t(identifier, passthrough_options), options).process
   end
 
