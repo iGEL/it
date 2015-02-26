@@ -12,6 +12,7 @@ end
 # Namespace of the gem.
 module It
   # It outside of your views. See documentation at Helper#it
+  # TODO: avoid code duplication between It.it and It::Helper#it
   def self.it(identifier, options = {})
     options = options.with_indifferent_access
     passthrough_options = options.slice(:locale, :default, :scope, :count)
