@@ -21,13 +21,15 @@ describe It::Plain do
   end
 
   describe '#process' do
-    subject(:plain) { described_class.new }
+    context "when not initialized with a param" do
+      subject(:plain) { described_class.new }
 
-    it "returns 'Ruby on Rails', if no param was given" do
-      expect(plain.process("Ruby on Rails")).to eq('Ruby on Rails')
+      it "returns 'Ruby on Rails'" do
+        expect(plain.process("Ruby on Rails")).to eq('Ruby on Rails')
+      end
     end
 
-    context 'when initialized with %[http://www.rubyonrails.org/]' do
+    context 'when initialized with %s[http://www.rubyonrails.org/]' do
       subject(:plain) { described_class.new("%s[http://www.rubyonrails.org/]") }
 
       it "returns 'Ruby on Rails[http://www.rubyonrails.org/]'" do
