@@ -25,7 +25,13 @@ describe It::Helper do
     end
 
     it "allows link options to be set" do
-      expect(view.it("test1", link: It.link("http://www.rubyonrails.org", target: "_blank"))).to eq('I have a <a href="http://www.rubyonrails.org" target="_blank">link to Rails</a> in the middle.')
+      attr_fragment = attributes_forward_and_backwards_regex_fragment(
+        'href="http://www.rubyonrails.org"', 'target="_blank"'
+      )
+
+      expect(
+        view.it("test1", link: It.link("http://www.rubyonrails.org", target: "_blank"))
+      ).to match(%r[\AI have a <a #{attr_fragment}>link to Rails</a> in the middle\.\z])
     end
 
     it "supports the plain thing" do
