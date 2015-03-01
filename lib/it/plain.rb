@@ -5,7 +5,7 @@ module It
       @template = template
     end
 
-    def process(content)
+    def process(content = '')
       sprintf(@template, content)
     end
   end
