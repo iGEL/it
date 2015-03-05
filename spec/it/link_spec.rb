@@ -36,13 +36,11 @@ describe It::Link do
 
   describe '#process' do
     it "returns a link with the options set and the content as label" do
-      attr_fragment = attributes_forward_and_backwards_regex_fragment(
-        'href="http://www.rubyonrails.org"', 'target="_blank"'
-      )
-
       expect(
         described_class.new("http://www.rubyonrails.org", target: "_blank").process("Rails")
-      ).to match(%r[\A<a #{attr_fragment}>Rails</a>\z])
+      ).to eq_html(
+        '<a href="http://www.rubyonrails.org" target="_blank">Rails</a>'
+      )
     end
   end
 end

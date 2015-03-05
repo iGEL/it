@@ -46,14 +46,9 @@ describe It::Tag do
 
   describe '#process' do
     it "returns a tag with the options as attributes and the param as content" do
-      attr_fragment = attributes_forward_and_backwards_regex_fragment(
-        'class="classy"', 'id="cool"'
-      )
-
       expect(
-        described_class.new(:i, "id" => "cool", "class" => "classy")
-          .process("some text")
-      ).to match(%r[\A<i #{attr_fragment}>some text</i>\z])
+        described_class.new(:i, "id" => "cool", "class" => "classy").process("some text")
+      ).to eq_html('<i class="classy" id="cool">some text</i>')
     end
 
     it "bes marked as html safe" do
