@@ -15,7 +15,7 @@ module It
   # TODO: avoid code duplication between It.it and It::Helper#it
   def self.it(identifier, options = {})
     options = options.with_indifferent_access
-    passthrough_options = options.slice(:locale, :default, :scope, :count)
+    passthrough_options = options.slice(:locale, :default, :scope)
     Parser.new(I18n.t(identifier, passthrough_options), options).process
   end
 

@@ -38,7 +38,7 @@ module It
     #
     def it(identifier, options = {})
       options = options.with_indifferent_access
-      passthrough_options = options.slice(:locale, :default, :scope, :count)
+      passthrough_options = options.slice(:locale, :default, :scope)
       It::Parser.new(t(identifier, passthrough_options), options).process
     end
   end
