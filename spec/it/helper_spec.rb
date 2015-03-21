@@ -119,6 +119,15 @@ describe It::Helper do
       expect(view.it('test1', locale: "de", link: It.link("http://www.rubyonrails.org"))).to eq('Ich habe einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.')
     end
 
+    it 'uses default key if no translation is present on specified key' do
+      I18n.backend.store_translations(:en, fallback: 'this is a fallback')
+      expect(view.it('a.missing.key', default: :fallback)).to eq('this is a fallback')
+    end
+
+    it 'uses default string if key is missing' do
+      expect(view.it('a.missing.key', default: 'this is a fallback string')).to eq('this is a fallback string')
+    end
+
     context "With a pluralized translation" do
       before do
         I18n.backend.store_translations(:en, test10: {zero: "You have zero messages.", one: "You have %{link:one message}.", other: "You have %{link:%{count} messages}."})
