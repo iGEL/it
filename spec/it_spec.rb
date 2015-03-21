@@ -16,6 +16,29 @@ describe It do
     it 'uses default string if key is missing' do
       expect(It.it('a.missing.key', default: 'this is a fallback string')).to eq('this is a fallback string')
     end
+
+    it 'uses scope if provided' do
+      I18n.backend.store_translations(:en, deeply: { nested: { key: 'this is a nested translation' } })
+      expect(It.it('key', scope: [:deeply, :nested])).to eq('this is a nested translation')
+    end
+
+    context "With a pluralized translation" do
+      before do
+        I18n.backend.store_translations(:en, messages: { zero: "You have zero messages.", one: "You have %{link:one message}.", other: "You have %{link:%{count} messages}." })
+      end
+
+      it 'works with count = 0' do
+        expect(It.it('messages', count: 0, link: '/messages')).to eq('You have zero messages.')
+      end
+
+      it 'works with count = 1' do
+        expect(It.it('messages', count: 1, link: '/messages')).to eq('You have <a href="/messages">one message</a>.')
+      end
+
+      it 'works with count > 1' do
+        expect(It.it('messages', count: 2, link: '/messages')).to eq('You have <a href="/messages">2 messages</a>.')
+      end
+    end
   end
 
   describe '.link' do
