@@ -4,6 +4,10 @@ module It
 
     INTERPOLATION_REGEXP = /%\{[^{}}]+\}/
 
+    def self.backend_options(options)
+      options.with_indifferent_access.slice(:default, :locale, :scope)
+    end
+
     def initialize(string, options)
       self.string = string
       self.options = options

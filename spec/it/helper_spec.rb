@@ -25,13 +25,11 @@ describe It::Helper do
     end
 
     it "allows link options to be set" do
-      attr_fragment = attributes_forward_and_backwards_regex_fragment(
-        'href="http://www.rubyonrails.org"', 'target="_blank"'
-      )
-
       expect(
         view.it("test1", link: It.link("http://www.rubyonrails.org", target: "_blank"))
-      ).to match(%r[\AI have a <a #{attr_fragment}>link to Rails</a> in the middle\.\z])
+      ).to eq_html(
+        'I have a <a href="http://www.rubyonrails.org" target="_blank">link to Rails</a> in the middle.'
+      )
     end
 
     it "supports the plain thing" do
@@ -119,6 +117,20 @@ describe It::Helper do
 
     it 'supports the locale option' do
       expect(view.it('test1', locale: "de", link: It.link("http://www.rubyonrails.org"))).to eq('Ich habe einen <a href="http://www.rubyonrails.org">Link zu Rails</a> in der Mitte.')
+    end
+
+    it 'uses default key if no translation is present on specified key' do
+      I18n.backend.store_translations(:en, fallback: 'this is a fallback')
+      expect(view.it('a.missing.key', default: :fallback)).to eq('this is a fallback')
+    end
+
+    it 'uses default string if key is missing' do
+      expect(view.it('a.missing.key', default: 'this is a fallback string')).to eq('this is a fallback string')
+    end
+
+    it 'uses scope if provided' do
+      I18n.backend.store_translations(:en, deeply: { nested: { key: 'this is a nested translation' } })
+      expect(view.it('key', scope: [:deeply, :nested])).to eq('this is a nested translation')
     end
 
     context "With a pluralized translation" do

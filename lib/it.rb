@@ -13,8 +13,10 @@ end
 module It
   # It outside of your views. See documentation at Helper#it
   def self.it(identifier, options = {})
-    options.stringify_keys!
-    Parser.new(I18n.t(identifier, locale: (options["locale"] || I18n.locale), default: options['default']), options).process
+    Parser.new(
+      I18n.t(identifier, Parser.backend_options(options)),
+      options.stringify_keys
+    ).process
   end
 
   # Creates a new link to be used in +it+.

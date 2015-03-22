@@ -2,6 +2,20 @@ require 'spec_helper'
 require 'it'
 
 describe It::Parser do
+  describe '.backend_options' do
+    it 'returns :locale, :default & :scope' do
+      expect(described_class.backend_options(
+        a: 1, locale: 2, default: 3, scope: 4, count: 5
+      )).to eq("locale" => 2, "default" => 3, "scope" => 4)
+    end
+
+    it 'also works with string keys' do
+      expect(described_class.backend_options(
+        "a" => 1, "locale" => 2, "default" => 3, "scope" => 4, "count" => 5
+      )).to eq("locale" => 2, "default" => 3, "scope" => 4)
+    end
+  end
+
   describe '#process' do
     it 'calls the Interpolation as required' do
       values = {'b' => It.tag(:b), 'link' => '/messages'}
