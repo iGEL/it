@@ -37,9 +37,10 @@ module It
     # If you need to use it outside of your views, use +It.it+.
     #
     def it(identifier, options = {})
-      options = options.with_indifferent_access
-      passthrough_options = options.slice(:locale, :default, :scope)
-      It::Parser.new(t(identifier, passthrough_options), options).process
+      It::Parser.new(
+        t(identifier, It::Parser.backend_options(options)),
+        options.stringify_keys
+      ).process
     end
   end
 end
