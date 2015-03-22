@@ -128,6 +128,11 @@ describe It::Helper do
       expect(view.it('a.missing.key', default: 'this is a fallback string')).to eq('this is a fallback string')
     end
 
+    it 'uses scope if provided' do
+      I18n.backend.store_translations(:en, deeply: { nested: { key: 'this is a nested translation' } })
+      expect(view.it('key', scope: [:deeply, :nested])).to eq('this is a nested translation')
+    end
+
     context "With a pluralized translation" do
       before do
         I18n.backend.store_translations(:en, test10: {zero: "You have zero messages.", one: "You have %{link:one message}.", other: "You have %{link:%{count} messages}."})
