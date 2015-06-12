@@ -4,6 +4,7 @@ require 'it/tag'
 require 'it/link'
 require 'it/plain'
 require 'it/helper'
+require 'it/version'
 
 ActiveSupport.on_load(:action_view) do
   include It::Helper

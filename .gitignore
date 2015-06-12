@@ -3,3 +3,4 @@
 .rbx
 .rspec
 coverage
+.ruby_version
