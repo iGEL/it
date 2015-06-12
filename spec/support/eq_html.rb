@@ -9,7 +9,7 @@ RSpec::Matchers.define :eq_html do |expected|
     "Expected the same HTML as \n  #{expected}\n but got \n  #{actual}"
   end
 
-  failure_message_when_negated do |actual|
+  failure_message_when_negated do
     "Expected a different HTML than #{expected}"
   end
 end

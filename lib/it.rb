@@ -22,9 +22,9 @@ module It
 
   # Creates a new link to be used in +it+.
   #
-  # * +href+: The url for the link. You may specify it as a String or as a named route like +article_path+. It's not possible to specify
-  #   a Hash like <code>{controller: "articles", action: "index"}</code> directly. Use the +url_for+ helper, if you would like to specify your
-  #   links like that.
+  # * +href+: The url for the link. You may specify it as a String or as a named route like +article_path+. It's not
+  #   possible to specify a Hash like <code>{controller: "articles", action: "index"}</code> directly. Use the
+  #   +url_for+ helper, if you would like to specify your links like that.
   # * +options+: The options as an Hash. Use them like you would with +link_to+. <em>(optional)</em>
   def self.link(href, options = {})
     It::Link.new(href, options)
@@ -32,9 +32,9 @@ module It
 
   # Creates a new plain replacement to be used in +it+.
   #
-  # * +template+: A string to be used as the template. An example would be <code>"%s[http://www.rubyonrails.org]"</code>. Defaults to
-  #   <code>"%s"</code>. <em>(optional)</em>
-  def self.plain(template = "%s")
+  # * +template+: A string to be used as the template. An example would be
+  #   <code>"%s[http://www.rubyonrails.org]"</code>. Defaults to <code>"%s"</code>. <em>(optional)</em>
+  def self.plain(template = '%s')
     It::Plain.new(template)
   end
 

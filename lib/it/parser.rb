@@ -18,8 +18,8 @@ module It
       escape_string
 
       # For deep nesting, we repeat the process until we have no interpolations anymore
-      while has_interpolation?
-        self.string.gsub!(INTERPOLATION_REGEXP) do |interpolation|
+      while contains_interpolation?
+        string.gsub!(INTERPOLATION_REGEXP) do |interpolation|
           Interpolation.new(interpolation, options).process
         end
       end
@@ -27,12 +27,19 @@ module It
     end
 
     private
-    def has_interpolation?
+
+    def contains_interpolation?
       string =~ INTERPOLATION_REGEXP
     end
 
     def handle_pluralization
-      self.string = I18n.backend.send(:pluralize, (options['locale'] || I18n.locale), string, options['count']) if string.is_a?(Hash) && options['count']
+      return if !string.is_a?(Hash) || !options.key?('count')
+
+      self.string = I18n.backend.send(:pluralize, locale, string, options['count'])
+    end
+
+    def locale
+      options['locale'] || I18n.locale
     end
 
     def escape_string

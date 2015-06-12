@@ -13,26 +13,28 @@ module It
     #
     #   <%=it("translation", login_link: It.link(login_path))
     #
-    # If your link doesn't require additional attributes and the name is +link+, starts with +link_+ or ends with +_link+,
-    # you may specify the argument as a String or your helper.
+    # If your link doesn't require additional attributes and the name is +link+, starts with +link_+ or ends with
+    # +_link+, you may specify the argument as a String or your helper.
     #
     #   # translation: "Already signed up? %{login_link:Sign in}!"
     #
     #   <%=it("translation", login_link: login_path)
     #
-    # You may have as many tags inside of one translation as you like, and you even may nest them into each other. Also you
-    # may specify arguments to links and other tags.
+    # You may have as many tags inside of one translation as you like, and you even may nest them into each other.
+    # Also you may specify arguments to links and other tags.
     #
-    #   # translation: "The top contributor of %{wiki_link:our wiki} is currently %{user_link:%{b:%{name}}}. Thanks a lot, %{name}!"
+    #   # translation: "The top %{wiki_link:our wiki} contributor is %{user_link:%{b:%{name}}}. Thanks %{name}!"
     #
-    #   <%= it("translation", wiki_link: wiki_path, name: user.name, b: It.tag(:b, class: "user"), user_link: It.link(user_path(user), target: "_blank"))
+    #   <%= it("translation", wiki_link: wiki_path, name: user.name, b: It.tag(:b, class: "user"),
+    #       user_link: It.link(user_path(user), target: "_blank"))
     #
-    # I recommend to limit the use of +it+ as much as possible. You could use it for <code><div></code> or <code><br /></code>, but I think,
-    # things seperated over multiple lines should go into different translations. Use it for inline tags like links, <code><span></code>,
-    # <code><b></code>, <code><i></code>, <code><em></code> or <code><strong></code>.
+    # I recommend to limit the use of +it+ as much as possible. You could use it for <code><div></code> or
+    # <code><br /></code>, but I think, things seperated over multiple lines should go into different translations. Use
+    # it for inline tags like links, <code><span></code>, <code><b></code>, <code><i></code>, <code><em></code> or
+    # <code><strong></code>.
     #
-    # It's currently not possible to specify your links as an Hash. Use the +url_for+ helper, if you want to specify your
-    # link target as an Hash.
+    # It's currently not possible to specify your links as an Hash. Use the +url_for+ helper, if you want to specify
+    # your link target as an Hash.
     #
     # If you need to use it outside of your views, use +It.it+.
     #

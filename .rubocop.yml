@@ -1,0 +1,14 @@
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+Style/Encoding:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+Style/GuardClause:
+  Enabled: false
+Documentation:
+  Enabled: false

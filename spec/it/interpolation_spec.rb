@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'it'
 
 describe It::Interpolation do
-  subject(:interpolation) { It::Interpolation.new('%{key:label}', { 'key' => It.tag(:b) }) }
+  subject(:interpolation) { It::Interpolation.new('%{key:label}', 'key' => It.tag(:b)) }
 
   describe '.new' do
     it 'throws an error with one argument' do
@@ -53,14 +53,14 @@ describe It::Interpolation do
 
     it 'does the normal interpolation if the value is not a Tag and no label is present' do
       interpolation.label = nil
-      interpolation.values = { 'key' => 'string'}
+      interpolation.values = {'key' => 'string'}
 
       expect(interpolation.process).to eq('string')
     end
 
     it 'escapes HTML in the normal interpolation' do
       interpolation.label = nil
-      interpolation.values = { 'key' => '<b>hallo</b>'}
+      interpolation.values = {'key' => '<b>hallo</b>'}
 
       expect(interpolation.process).to eq('&lt;b&gt;hallo&lt;/b&gt;')
     end
@@ -72,7 +72,7 @@ describe It::Interpolation do
     end
 
     it 'raises an ArgumentError, if a string should be interpolated with a label' do
-      interpolation.values = { 'key' => 'string'}
+      interpolation.values = {'key' => 'string'}
 
       expect { interpolation.process }.to raise_error(ArgumentError)
     end

@@ -11,3 +11,5 @@ gemfile:
   - gemfiles/rails3.2
   - gemfiles/rails4.1
   - gemfiles/rails4.2
+
+script: bundle exec rake spec rubocop

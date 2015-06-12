@@ -7,8 +7,9 @@ module It
 
     # See It.tag for details. You can do everything there and save 6 characters.
     def initialize(tag_name, options = {})
-      raise TypeError, "tag_name must be specified as a String or Symbol" unless tag_name.is_a?(String) || tag_name.is_a?(Symbol)
-      raise TypeError, "options must be specified as a Hash" unless options.is_a?(Hash)
+      fail TypeError, 'tag_name must be a String or Symbol' unless [String, Symbol].include?(tag_name.class)
+      fail TypeError, 'options must be a Hash' unless options.is_a?(Hash)
+
       @tag_name = tag_name.to_sym
       @options = options.symbolize_keys
     end
