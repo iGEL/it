@@ -16,10 +16,10 @@ module It
 
     # Will be called from inside the helper to return the tag with the given content.
     def process(content = nil) # :nodoc:
-      if content.nil?
-        tag(@tag_name, @options)
-      else
+      if content
         content_tag(@tag_name, content, @options)
+      else
+        tag(@tag_name, @options)
       end
     end
   end

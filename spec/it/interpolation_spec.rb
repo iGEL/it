@@ -2,7 +2,9 @@ require 'spec_helper'
 require 'it'
 
 describe It::Interpolation do
-  subject(:interpolation) { It::Interpolation.new('%{key:label}', 'key' => It.tag(:b)) }
+  subject(:interpolation) { It::Interpolation.new(string, values) }
+  let(:string) { '%{key:label}' }
+  let(:values) { {'key' => It.tag(:b)} }
 
   describe '.new' do
     it 'throws an error with one argument' do
@@ -18,25 +20,25 @@ describe It::Interpolation do
     end
 
     it 'assigns nil to the label if not present' do
-      expect(It::Interpolation.new('%{key}', {}).label).to be_nil
+      expect(It::Interpolation.new('%{key}', 'key' => 'string').label).to be_nil
     end
 
-    it 'converts string values to a It::Link if the key is named link' do
+    it 'converts string value to a It::Link if the key is named link' do
       interpolation = It::Interpolation.new('%{link:label}', 'link' => 'http://github.com')
 
-      expect(interpolation.values['link']).to be_kind_of(It::Link)
+      expect(interpolation.value).to be_kind_of(It::Link)
     end
 
-    it 'converts string values to a It::Link if the key starts with link_' do
+    it 'converts string value to a It::Link if the key starts with link_' do
       interpolation = It::Interpolation.new('%{link_github:label}', 'link_github' => 'http://github.com')
 
-      expect(interpolation.values['link_github']).to be_kind_of(It::Link)
+      expect(interpolation.value).to be_kind_of(It::Link)
     end
 
-    it 'converts string values to a It::Link if the key ends with _link' do
+    it 'converts string value to a It::Link if the key ends with _link' do
       interpolation = It::Interpolation.new('%{github_link:label}', 'github_link' => 'http://github.com')
 
-      expect(interpolation.values['github_link']).to be_kind_of(It::Link)
+      expect(interpolation.value).to be_kind_of(It::Link)
     end
   end
 
@@ -51,30 +53,37 @@ describe It::Interpolation do
       expect(interpolation.process).to eq('<b />')
     end
 
-    it 'does the normal interpolation if the value is not a Tag and no label is present' do
-      interpolation.label = nil
-      interpolation.values = {'key' => 'string'}
+    context 'when the value is not a tag and no label' do
+      let(:string) { '%{key}' }
+      let(:values) { {'key' => 'string'} }
 
-      expect(interpolation.process).to eq('string')
+      it 'does the normal interpolation' do
+        expect(interpolation.process).to eq('string')
+      end
+
+      context 'and the values contain html' do
+        let(:values) { {'key' => '<b>hallo</b>'} }
+
+        it 'escapes HTML in the normal interpolation' do
+          expect(interpolation.process).to eq('&lt;b&gt;hallo&lt;/b&gt;')
+        end
+      end
     end
 
-    it 'escapes HTML in the normal interpolation' do
-      interpolation.label = nil
-      interpolation.values = {'key' => '<b>hallo</b>'}
+    context 'when the requested key was not privided' do
+      let(:values) { {} }
 
-      expect(interpolation.process).to eq('&lt;b&gt;hallo&lt;/b&gt;')
+      it 'raises an KeyError if the requested key was not provided' do
+        expect { interpolation.process }.to raise_error(KeyError)
+      end
     end
 
-    it 'raises an KeyError if the requested key was not provided' do
-      interpolation.values = {}
+    context 'when a string key has an argument' do
+      let(:values) { {'key' => 'string'} }
 
-      expect { interpolation.process }.to raise_error(KeyError)
-    end
-
-    it 'raises an ArgumentError, if a string should be interpolated with a label' do
-      interpolation.values = {'key' => 'string'}
-
-      expect { interpolation.process }.to raise_error(ArgumentError)
+      it 'raises an ArgumentError' do
+        expect { interpolation.process }.to raise_error(ArgumentError)
+      end
     end
   end
 end

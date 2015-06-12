@@ -1,4 +1,5 @@
 module It
+  # Parses the string and replaces all interpolations accordingly.
   class Parser
     attr_accessor :string, :options
 

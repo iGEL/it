@@ -1,22 +1,24 @@
 module It
+  # Contains one interpolation and will delegate the work to the It::Tag (or subclass) or
+  # ERB::Util.h
   class Interpolation
-    attr_accessor :key, :label, :values
+    attr_accessor :key, :label, :value
 
     def initialize(string, values)
       self.key, self.label = string[2..-2].split(':', 2)
-      self.values = values
+      validate_key_presence(values)
 
+      self.value = values[key]
       convert_links
     end
 
     def process
-      validate_key_presence!
-      validate_value_for_arguments!
+      validate_value_for_arguments
 
-      if values[key].is_a?(It::Tag) # Empty tag
+      if value.is_a?(It::Tag) # Empty tag
         process_it_tag
       else # Normal interpolations, as I18n.t would do it.
-        ERB::Util.h(values[key])
+        ERB::Util.h(value)
       end
     end
 
@@ -24,26 +26,26 @@ module It
 
     # Convert keys with String arguments into It::Links, if they are named link, link_* or *_link
     def convert_links
-      if key =~ /(\Alink\Z|_link\Z|\Alink_)/ && values[key].is_a?(String)
-        values[key] = It::Link.new(values[key])
+      if key =~ /(\Alink\z|_link\z|\Alink_)/ && value.is_a?(String)
+        self.value = It::Link.new(value)
       end
     end
 
     def process_it_tag
       if label
-        values[key].process(label.html_safe)
+        value.process(label.html_safe)
       else
-        values[key].process
+        value.process
       end
     end
 
-    def validate_key_presence!
+    def validate_key_presence(values)
       fail KeyError, "key{#{key}} not found" unless values.key?(key)
     end
 
-    def validate_value_for_arguments!
-      if label && !values[key].is_a?(It::Tag)
-        fail ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{values[key].class}"
+    def validate_value_for_arguments
+      if label && !value.is_a?(It::Tag)
+        fail ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{value.class}"
       end
     end
   end
