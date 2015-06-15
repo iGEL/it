@@ -5,11 +5,11 @@ module It
     attr_accessor :key, :label, :value
 
     def initialize(string, values)
-      self.key, self.label = string[2..-2].split(':', 2)
-      validate_key_presence(values)
+      self.key, self.label = extract_key_and_label_from(string)
 
+      validate_key_presence(values)
       self.value = values[key]
-      convert_links
+      convert_link
     end
 
     def process
@@ -24,8 +24,13 @@ module It
 
     private
 
+    def extract_key_and_label_from(string)
+      # eg: %{key:label} or %{key}
+      string[2..-2].split(':', 2)
+    end
+
     # Convert keys with String arguments into It::Links, if they are named link, link_* or *_link
-    def convert_links
+    def convert_link
       if key =~ /(\Alink\z|_link\z|\Alink_)/ && value.is_a?(String)
         self.value = It::Link.new(value)
       end
