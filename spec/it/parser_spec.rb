@@ -21,13 +21,12 @@ describe It::Parser do
       values = {'b' => It.tag(:b), 'link' => '/messages'}
       parser = It::Parser.new('You have %{b:%{link:new messages}}!', values)
 
-      return1 = double('It::Interpolation', process: '<a href="/messages">new messages</a>')
-      allow(It::Interpolation).to receive(:new).with('%{link:new messages}', values).and_return(return1)
+      allow(It::Interpolation).to receive(:call).with('%{link:new messages}', values)
+        .and_return('<a href="/messages">new messages</a>')
 
-      return2 = double('It::Interpolation', process: '<b><a href="/messages">new messages</a></b>')
-      allow(It::Interpolation).to receive(:new).with(
+      allow(It::Interpolation).to receive(:call).with(
         '%{b:<a href="/messages">new messages</a>}', values
-      ).and_return(return2)
+      ).and_return('<b><a href="/messages">new messages</a></b>')
 
       expect(parser.process).to eq('You have <b><a href="/messages">new messages</a></b>!')
     end

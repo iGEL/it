@@ -2,55 +2,21 @@ require 'spec_helper'
 require 'it'
 
 describe It::Interpolation do
-  subject(:interpolation) { It::Interpolation.new(string, values) }
+  subject(:result) { It::Interpolation.call(string, values) }
   let(:string) { '%{key:label}' }
   let(:values) { {'key' => It.tag(:b)} }
 
-  describe '.new' do
-    it 'throws an error with one argument' do
-      expect { It::Interpolation.new('%{key:label}') }.to raise_error(ArgumentError)
-    end
-
-    it 'extracts the key from the string' do
-      expect(interpolation.key).to eq('key')
-    end
-
-    it 'extracts the label from the string' do
-      expect(interpolation.label).to eq('label')
-    end
-
-    it 'assigns nil to the label if not present' do
-      expect(It::Interpolation.new('%{key}', 'key' => 'string').label).to be_nil
-    end
-
-    it 'converts string value to a It::Link if the key is named link' do
-      interpolation = It::Interpolation.new('%{link:label}', 'link' => 'http://github.com')
-
-      expect(interpolation.value).to be_kind_of(It::Link)
-    end
-
-    it 'converts string value to a It::Link if the key starts with link_' do
-      interpolation = It::Interpolation.new('%{link_github:label}', 'link_github' => 'http://github.com')
-
-      expect(interpolation.value).to be_kind_of(It::Link)
-    end
-
-    it 'converts string value to a It::Link if the key ends with _link' do
-      interpolation = It::Interpolation.new('%{github_link:label}', 'github_link' => 'http://github.com')
-
-      expect(interpolation.value).to be_kind_of(It::Link)
-    end
-  end
-
-  describe '#process' do
+  describe '.call' do
     it 'interpolates the string' do
-      expect(interpolation.process).to eq('<b>label</b>')
+      expect(result).to eq('<b>label</b>')
     end
 
-    it 'interpolates the string to an empty tag if no label is present' do
-      interpolation.label = nil
+    context 'when there is no label set' do
+      let(:string) { '%{key}' }
 
-      expect(interpolation.process).to eq('<b />')
+      it 'interpolates the string to an empty tag' do
+        expect(result).to eq('<b />')
+      end
     end
 
     context 'when the value is not a tag and no label' do
@@ -58,23 +24,52 @@ describe It::Interpolation do
       let(:values) { {'key' => 'string'} }
 
       it 'does the normal interpolation' do
-        expect(interpolation.process).to eq('string')
+        expect(result).to eq('string')
       end
 
       context 'and the values contain html' do
         let(:values) { {'key' => '<b>hallo</b>'} }
 
         it 'escapes HTML in the normal interpolation' do
-          expect(interpolation.process).to eq('&lt;b&gt;hallo&lt;/b&gt;')
+          expect(result).to eq('&lt;b&gt;hallo&lt;/b&gt;')
+        end
+      end
+    end
+
+    context 'with a string value' do
+      let(:string) { "%{#{key}:label}" }
+      let(:values) { {key => 'https://github.com'} }
+
+      context 'and a key called link' do
+        let(:key) { 'link' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
+        end
+      end
+
+      context 'and a key starting with link_' do
+        let(:key) { 'link_github' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
+        end
+      end
+
+      context 'and a key ending with link_' do
+        let(:key) { 'github_link' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
         end
       end
     end
 
     context 'when the requested key was not privided' do
-      let(:values) { {} }
+      let(:values) { {'something' => 'else'} }
 
       it 'raises an KeyError if the requested key was not provided' do
-        expect { interpolation.process }.to raise_error(KeyError)
+        expect { result }.to raise_error(KeyError)
       end
     end
 
@@ -82,7 +77,7 @@ describe It::Interpolation do
       let(:values) { {'key' => 'string'} }
 
       it 'raises an ArgumentError' do
-        expect { interpolation.process }.to raise_error(ArgumentError)
+        expect { result }.to raise_error(ArgumentError)
       end
     end
   end

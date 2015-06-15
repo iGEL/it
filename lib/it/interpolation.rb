@@ -2,17 +2,34 @@ module It
   # Contains one interpolation and will delegate the work to the It::Tag (or subclass) or
   # ERB::Util.h
   class Interpolation
-    attr_accessor :key, :label, :value
+    class << self
+      def call(string, values)
+        key, label = extract_key_and_label_from(string)
+        value = values[key]
 
-    def initialize(string, values)
-      self.key, self.label = extract_key_and_label_from(string)
+        fail KeyError, "key{#{key}} not found" unless values.key?(key)
 
-      validate_key_presence(values)
-      self.value = values[key]
-      convert_link
+        new(key, value, label).process
+      end
+
+      private
+
+      # This is a :reek:UtilityFunction, but it's not an instance method
+      def extract_key_and_label_from(string)
+        # eg: %{key:label} or %{key}
+        string[2..-2].split(':', 2)
+      end
+    end
+
+    def initialize(key, value, label)
+      @key = key
+      @value = value
+      @label = label
     end
 
     def process
+      convert_link
+
       validate_value_for_arguments
 
       if value.is_a?(It::Tag)
@@ -24,15 +41,12 @@ module It
 
     private
 
-    def extract_key_and_label_from(string)
-      # eg: %{key:label} or %{key}
-      string[2..-2].split(':', 2)
-    end
+    attr_reader :key, :value, :label
 
     # Convert keys with String arguments into It::Links, if they are named link, link_* or *_link
     def convert_link
       if key =~ /(\Alink\z|_link\z|\Alink_)/ && value.is_a?(String)
-        self.value = It::Link.new(value)
+        @value = It::Link.new(value)
       end
     end
 
@@ -42,10 +56,6 @@ module It
       else
         value.process
       end
-    end
-
-    def validate_key_presence(values)
-      fail KeyError, "key{#{key}} not found" unless values.key?(key)
     end
 
     def validate_value_for_arguments

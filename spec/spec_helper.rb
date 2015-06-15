@@ -11,11 +11,12 @@ Coveralls.wear!
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
 
 RSpec.configure do |config|
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  config.expect_with :rspec do |expect|
+    expect.syntax = :expect
   end
 
-  config.mock_with :rspec do |c|
-    c.syntax = :expect
+  config.mock_with :rspec do |mock|
+    mock.syntax = :expect
+    mock.verify_partial_doubles = true
   end
 end

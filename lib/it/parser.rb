@@ -21,7 +21,7 @@ module It
       # For deep nesting, we repeat the process until we have no interpolations anymore
       while contains_interpolation?
         string.gsub!(INTERPOLATION_REGEXP) do |interpolation|
-          Interpolation.new(interpolation, options).process
+          Interpolation.call(interpolation, options)
         end
       end
       string.html_safe
