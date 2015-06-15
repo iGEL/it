@@ -2,7 +2,7 @@
 [![Build Status](http://img.shields.io/travis/iGEL/it/master.svg?style=flat)](https://travis-ci.org/iGEL/it)
 [![Coverage](http://img.shields.io/coveralls/iGEL/it/master.svg?style=flat)](https://coveralls.io/r/iGEL/it)
 [![Rubygems](http://img.shields.io/gem/v/it.svg?style=flat)](http://rubygems.org/gems/it)
-[![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://travis-ci.org/iGEL/it)
+[![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://github.com/iGEL/it/issues)
 [![Dependency Status](http://img.shields.io/gemnasium/iGEL/it.svg?style=flat)](https://gemnasium.com/iGEL/it)
 
 Tested against Ruby 2.2, 2.1, 2.0, head, rbx, and jruby and Rails 4.2, 4.1, and 3.2
