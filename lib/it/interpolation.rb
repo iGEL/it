@@ -15,7 +15,7 @@ module It
     def process
       validate_value_for_arguments
 
-      if value.is_a?(It::Tag) # Empty tag
+      if value.is_a?(It::Tag)
         process_it_tag
       else # Normal interpolations, as I18n.t would do it.
         ERB::Util.h(value)
