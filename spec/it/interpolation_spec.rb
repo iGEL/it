@@ -65,6 +65,35 @@ describe It::Interpolation do
       end
     end
 
+    context 'with a string value containing whitespace to separate keys and labels' do
+      let(:string) { "%{#{key}: label}" }
+      let(:values) { {key => 'https://github.com'} }
+
+      context 'and a key called link' do
+        let(:key) { 'link' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
+        end
+      end
+
+      context 'and a key starting with link_' do
+        let(:key) { 'link_github' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
+        end
+      end
+
+      context 'and a key ending with link_' do
+        let(:key) { 'github_link' }
+
+        it 'converts it to a link' do
+          expect(result).to eq('<a href="https://github.com">label</a>')
+        end
+      end
+    end
+
     context 'when the requested key was not privided' do
       let(:values) { {'something' => 'else'} }
 

@@ -16,8 +16,8 @@ module It
 
       # This is a :reek:UtilityFunction, but it's not an instance method
       def extract_key_and_label_from(string)
-        # eg: %{key:label} or %{key}
-        string[2..-2].split(':', 2)
+        # eg: %{key:label} or %{key} or %{key: label}
+        string[2..-2].split(/:\s*/, 2)
       end
     end
 
