@@ -1,7 +1,7 @@
 module It
   # Parses the string and replaces all interpolations accordingly.
   class Parser
-    attr_accessor :string, :options
+    attr_reader :string, :options
 
     INTERPOLATION_REGEXP = /%\{[^{}}]+\}/
 
@@ -10,8 +10,8 @@ module It
     end
 
     def initialize(string, options)
-      self.string = string
-      self.options = options
+      @string = string
+      @options = options
     end
 
     def process
@@ -36,7 +36,7 @@ module It
     def handle_pluralization
       return if !string.is_a?(Hash) || !options.key?('count')
 
-      self.string = I18n.backend.send(:pluralize, locale, string, options['count'])
+      @string = I18n.backend.send(:pluralize, locale, string, options['count'])
     end
 
     def locale
@@ -44,7 +44,7 @@ module It
     end
 
     def escape_string
-      self.string = String.new(ERB::Util.h(string))
+      @string = String.new(ERB::Util.h(string))
     end
   end
 end
