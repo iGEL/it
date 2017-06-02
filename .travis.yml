@@ -1,11 +1,11 @@
 language: ruby
+sudo: false
 rvm:
   - 2.4
   - 2.3
-  - 2.2
+  - 2.2.7
   - ruby-head
-  - rbx
-  - jruby
+  - jruby-9.1.10.0
 
 gemfile:
   - gemfiles/rails4.2

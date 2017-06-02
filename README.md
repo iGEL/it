@@ -5,7 +5,7 @@
 [![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://github.com/iGEL/it/issues)
 [![Dependency Status](http://img.shields.io/gemnasium/iGEL/it.svg?style=flat)](https://gemnasium.com/iGEL/it)
 
-Tested against Ruby 2.4, 2.3, 2.2, head, rbx, and jruby and Rails 5.1, 5.0, and 4.2
+Tested against Ruby 2.4, 2.3, 2.2, head, and jruby 9.1.10.0 and Rails 5.1, 5.0, and 4.2
 
 What is **it**?
 =============
