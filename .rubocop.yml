@@ -1,4 +1,4 @@
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 Style/BlockDelimiters:
   EnforcedStyle: semantic
@@ -6,9 +6,14 @@ Style/Encoding:
   Enabled: false
 Metrics/LineLength:
   Max: 120
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 Style/GuardClause:
   Enabled: false
 Documentation:
   Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

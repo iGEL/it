@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/igel/it'
   spec.license       = 'MIT'
 
-  spec.files         = %w(MIT-LICENSE README.md Rakefile Gemfile CHANGELOG.md it.gemspec) + Dir['lib/**/*.rb']
+  spec.files         = %w[MIT-LICENSE README.md Rakefile Gemfile CHANGELOG.md it.gemspec] + Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 
   spec.add_dependency 'actionpack', '>= 3.0.0'

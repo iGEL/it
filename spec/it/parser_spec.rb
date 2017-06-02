@@ -21,7 +21,8 @@ describe It::Parser do
       values = {'b' => It.tag(:b), 'link' => '/messages'}
       parser = It::Parser.new('You have %{b:%{link:new messages}}!', values)
 
-      allow(It::Interpolation).to receive(:call).with('%{link:new messages}', values)
+      allow(It::Interpolation).to receive(:call)
+        .with('%{link:new messages}', values)
         .and_return('<a href="/messages">new messages</a>')
 
       allow(It::Interpolation).to receive(:call).with(

@@ -7,7 +7,7 @@ module It
         key, label = extract_key_and_label_from(string)
         value = values[key]
 
-        fail KeyError, "key{#{key}} not found" unless values.key?(key)
+        raise KeyError, "key{#{key}} not found" unless values.key?(key)
 
         new(key, value, label).process
       end
@@ -60,7 +60,7 @@ module It
 
     def validate_value_for_arguments
       if label && !value.is_a?(It::Tag)
-        fail ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{value.class}"
+        raise ArgumentError, "key{#{key}} has an argument, so it cannot resolved with a #{value.class}"
       end
     end
   end

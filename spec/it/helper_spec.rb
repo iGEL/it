@@ -173,7 +173,7 @@ describe It::Helper do
     it 'uses scope if provided' do
       I18n.backend.store_translations(:en, deeply: {nested: {key: 'this is a nested translation'}})
 
-      expect(view.it('key', scope: [:deeply, :nested])).to eq('this is a nested translation')
+      expect(view.it('key', scope: %i[deeply nested])).to eq('this is a nested translation')
     end
 
     context 'With a pluralized translation' do
