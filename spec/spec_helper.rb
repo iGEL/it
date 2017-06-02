@@ -17,6 +17,14 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.after(:example) do
+    I18n.locale = :en
+    I18n.default_locale = :en
+    I18n.available_locales = nil
+    I18n.backend = nil
+    I18n.default_separator = nil
+  end
+
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.disable_monkey_patching!
