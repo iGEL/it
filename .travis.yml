@@ -1,15 +1,15 @@
 language: ruby
 rvm:
+  - 2.4
+  - 2.3
   - 2.2
-  - 2.1
-  - 2.0
   - ruby-head
   - rbx
   - jruby
 
 gemfile:
-  - gemfiles/rails3.2
-  - gemfiles/rails4.1
   - gemfiles/rails4.2
+  - gemfiles/rails5.0
+  - gemfiles/rails5.1
 
 script: bundle exec rake
