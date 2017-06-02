@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It::Link do
+RSpec.describe It::Link do
   describe '.new' do
     it 'accepts a String as frist param' do
       expect { described_class.new('http://www.rubyonrails.org/') }.not_to raise_error

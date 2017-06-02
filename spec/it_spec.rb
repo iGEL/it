@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It do
+RSpec.describe It do
   describe '.it' do
     it 'translates inside the controller as well' do
       I18n.backend.store_translations(:en, test1: 'I have a %{link:link to Rails} in the middle.')

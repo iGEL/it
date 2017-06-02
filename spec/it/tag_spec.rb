@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It::Tag do
+RSpec.describe It::Tag do
   describe '.new' do
     it 'works with a parameter (Symbol)' do
       expect { described_class.new(:b) }.not_to raise_error

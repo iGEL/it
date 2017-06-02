@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It::Interpolation do
+RSpec.describe It::Interpolation do
   subject(:result) { It::Interpolation.call(string, values) }
   let(:string) { '%{key:label}' }
   let(:values) { {'key' => It.tag(:b)} }

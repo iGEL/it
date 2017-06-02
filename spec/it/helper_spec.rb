@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'it'
 require 'active_support/core_ext/string'
 
-describe It::Helper do
+RSpec.describe It::Helper do
   describe '#it' do
     let(:view) { ActionView::Base.new(controller: ActionController::Base.new) }
 

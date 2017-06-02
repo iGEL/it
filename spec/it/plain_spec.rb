@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It::Plain do
+RSpec.describe It::Plain do
   describe '.new' do
     it 'works with no params' do
       expect { described_class.new }.not_to raise_error

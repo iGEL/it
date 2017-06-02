@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'it'
 
-describe It::Parser do
+RSpec.describe It::Parser do
   describe '.backend_options' do
     it 'returns :locale, :default & :scope' do
       expect(
