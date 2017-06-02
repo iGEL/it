@@ -2,6 +2,7 @@
 
 * Allow whitespace after the colon without considering it part of the value [#20](https://github.com/iGEL/it/pull/20)  
   *Russell Norris*
+* Run specs with warnings enabled
 
 # 0.8.0 (2015-06-12)
 
