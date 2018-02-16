@@ -51,7 +51,7 @@ You may have as many links inside your translations as you like, and normal inte
 
 ```yaml
 en:
-  copy: "Read the %{guide:Rails I18n guide} for more than %{advises} advises. Fork it at {repo:github}."
+  copy: "Read the %{guide:Rails I18n guide} for more than %{advises} advises. Fork it at %{repo:github}."
 ```
 
 ```erb
