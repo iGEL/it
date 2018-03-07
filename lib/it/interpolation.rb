@@ -45,9 +45,7 @@ module It
 
     # Convert keys with String arguments into It::Links, if they are named link, link_* or *_link
     def convert_link
-      if key =~ /(\Alink\z|_link\z|\Alink_)/ && value.is_a?(String)
-        @value = It::Link.new(value)
-      end
+      @value = It::Link.new(value) if key =~ /(\Alink\z|_link\z|\Alink_)/ && value.is_a?(String)
     end
 
     def process_it_tag
