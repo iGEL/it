@@ -1,4 +1,4 @@
-[![Code Climate](http://img.shields.io/codeclimate/github/iGEL/it.svg?style=flat)](https://codeclimate.com/github/iGEL/it)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6f705ee22d3eb7422d8f/maintainability)](https://codeclimate.com/github/iGEL/it/maintainability)
 [![Build Status](http://img.shields.io/travis/iGEL/it/master.svg?style=flat)](https://travis-ci.org/iGEL/it)
 [![Coverage](http://img.shields.io/coveralls/iGEL/it/master.svg?style=flat)](https://coveralls.io/r/iGEL/it)
 [![Rubygems](http://img.shields.io/gem/v/it.svg?style=flat)](http://rubygems.org/gems/it)
