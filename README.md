@@ -3,7 +3,6 @@
 [![Coverage](http://img.shields.io/coveralls/iGEL/it/master.svg?style=flat)](https://coveralls.io/r/iGEL/it)
 [![Rubygems](http://img.shields.io/gem/v/it.svg?style=flat)](http://rubygems.org/gems/it)
 [![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://github.com/iGEL/it/issues)
-[![Dependency Status](http://img.shields.io/gemnasium/iGEL/it.svg?style=flat)](https://gemnasium.com/iGEL/it)
 
 Tested against Ruby 2.5, 2.4, 2.3, head, and jruby 9.1.16.0 and Rails 5.2, 5.1, 5.0, and 4.2
 
