@@ -38,6 +38,12 @@ RSpec.describe It::Parser do
       expect(parser.process).to eq('It is a &lt;b&gt;save&lt;/b&gt; <i>&lt;i&gt;world&lt;/i&gt;</i>')
     end
 
+    it "doesn't escape HTML in the string and the labels if they are safe already" do
+      parser = It::Parser.new('It is a <b>save</b> %{word:<i>world</i>}'.html_safe, 'word' => It.tag(:i))
+
+      expect(parser.process).to eq('It is a <b>save</b> <i><i>world</i></i>')
+    end
+
     it 'marks the result as html safe' do
       parser = It::Parser.new('test', {})
 
