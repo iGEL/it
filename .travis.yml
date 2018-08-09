@@ -5,7 +5,7 @@ rvm:
   - 2.4
   - 2.3
   - ruby-head
-  - jruby-9.1.16.0
+  - jruby-9.2.0.0
 
 gemfile:
   - gemfiles/rails4.2
