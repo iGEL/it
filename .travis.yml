@@ -11,5 +11,6 @@ gemfile:
   - gemfiles/rails4.2
   - gemfiles/rails5.0
   - gemfiles/rails5.1
+  - gemfiles/rails5.2
 
 script: bundle exec rake
