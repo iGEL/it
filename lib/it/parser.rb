@@ -3,7 +3,7 @@ module It
   class Parser
     attr_reader :string, :options
 
-    INTERPOLATION_REGEXP = /%\{[^{}]+\}/
+    INTERPOLATION_REGEXP = /%\{[^{}]+\}/.freeze
 
     def self.backend_options(options)
       options.with_indifferent_access.slice(:default, :locale, :scope)

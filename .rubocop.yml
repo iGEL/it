@@ -17,3 +17,7 @@ Style/FormatStringToken:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+  
