@@ -1,10 +1,10 @@
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 Style/BlockDelimiters:
   EnforcedStyle: semantic
 Style/Encoding:
   Enabled: false
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
