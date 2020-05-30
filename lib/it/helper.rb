@@ -40,7 +40,7 @@ module It
     #
     def it(identifier, options = {})
       It::Parser.new(
-        t(identifier, It::Parser.backend_options(options)),
+        t(identifier, It::Parser.backend_options(options).deep_symbolize_keys),
         options.stringify_keys
       ).process
     end
