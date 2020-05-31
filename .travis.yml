@@ -1,16 +1,16 @@
 language: ruby
 sudo: false
 rvm:
+  - 2.6
   - 2.5
   - 2.4
-  - 2.3
   - ruby-head
-  - jruby-9.2.0.0
+  - jruby-9.2
 
 gemfile:
-  - gemfiles/rails4.2
   - gemfiles/rails5.0
   - gemfiles/rails5.1
   - gemfiles/rails5.2
+  - gemfiles/rails6.0
 
 script: bundle exec rake
