@@ -4,7 +4,7 @@ require 'active_support/core_ext/string'
 
 RSpec.describe It::Helper do
   describe '#it' do
-    let(:view) { ActionView::Base.new(controller: ActionController::Base.new) }
+    let(:view) { ActionView::Base.new(ActionView::LookupContext.new([])) }
 
     before do
       I18n.backend.store_translations(:en, test1: 'I have a %{link:link to Rails} in the middle.')
