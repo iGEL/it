@@ -1,23 +1,23 @@
-Layout/ParameterAlignment:
-  EnforcedStyle: with_fixed_indentation
-Style/BlockDelimiters:
-  EnforcedStyle: semantic
-Style/Encoding:
-  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.5
 Layout/LineLength:
   Max: 120
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
-Style/GuardClause:
-  Enabled: false
-Documentation:
-  Enabled: false
-Style/FormatStringToken:
-  Enabled: false
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+Style/Documentation:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-  
+Style/GuardClause:
+  Enabled: false

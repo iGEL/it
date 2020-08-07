@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.files         = %w[MIT-LICENSE README.md Rakefile Gemfile CHANGELOG.md it.gemspec] + Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 
+  spec.required_ruby_version = '>= 2.5.0'
   spec.add_dependency 'actionpack', '>= 3.0.0'
 
   spec.add_development_dependency 'bundler'
