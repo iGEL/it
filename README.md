@@ -4,7 +4,7 @@
 [![Rubygems](http://img.shields.io/gem/v/it.svg?style=flat)](http://rubygems.org/gems/it)
 [![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://github.com/iGEL/it/issues)
 
-Tested against Ruby 2.5, 2.4, 2.3, head, and jruby 9.2.0.0 and Rails 5.2, 5.1, 5.0, and 4.2
+Tested against Ruby 2.7, 2.6, 2.5, and head and Rails 6.0 and 5.2
 
 What is **it**?
 =============
