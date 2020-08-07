@@ -1,6 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/6f705ee22d3eb7422d8f/maintainability)](https://codeclimate.com/github/iGEL/it/maintainability)
-[![Build Status](http://img.shields.io/travis/iGEL/it/master.svg?style=flat)](https://travis-ci.org/iGEL/it)
-[![Coverage](http://img.shields.io/coveralls/iGEL/it/master.svg?style=flat)](https://coveralls.io/r/iGEL/it)
+[![Build Status](http://img.shields.io/travis/iGEL/it/main.svg?style=flat)](https://travis-ci.org/iGEL/it)
+[![Coverage](http://img.shields.io/coveralls/iGEL/it/main.svg?style=flat)](https://coveralls.io/r/iGEL/it)
 [![Rubygems](http://img.shields.io/gem/v/it.svg?style=flat)](http://rubygems.org/gems/it)
 [![Github Issues](http://img.shields.io/github/issues/iGEL/it.svg?style=flat)](https://github.com/iGEL/it/issues)
 
@@ -57,7 +57,7 @@ en:
 <%=it "copy",
   guide: It.link("http://guides.rubyonrails.org/i18n.html"),
   advices: 100,
-  repo: It.link("https://github.com/lifo/docrails/tree/master/railties/guides") %>
+  repo: It.link("https://github.com/rails/rails") %>
 ```
 
 As you see above, unless the interpolation name is `link` or starts with `link_` or ends with `_link`, you need to call `It.link` to create a link. The advantage of `It.link`: You may specify options like you would with `link_to`:
@@ -104,7 +104,7 @@ en:
 ```
 
 ```erb
-https://github.com/lifo/docrails/tree/master/railties/guides
+https://github.com/rails/rails
 <%= it "mail_copy", link: It.link("http://www.rubyonrails.org/") %>
 
 Plain mail:
