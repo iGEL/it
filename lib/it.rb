@@ -15,7 +15,7 @@ module It
   # It outside of your views. See documentation at Helper#it
   def self.it(identifier, options = {})
     Parser.new(
-      I18n.t(identifier, Parser.backend_options(options).symbolize_keys),
+      I18n.t(identifier, **Parser.backend_options(options).symbolize_keys),
       options.stringify_keys
     ).process
   end
