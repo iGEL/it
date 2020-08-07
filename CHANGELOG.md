@@ -9,6 +9,8 @@
 * Fix 'TypeError - hash key raise is not a Symbol' when used with Rails 6.0.3 [#28](https://github.com/iGEL/it/pull/28)  
   *Jason Barnabe* and *wingice*
 * Fix Ruby 2.7 deprecations
+* `It.link` now accepts `ActiveSupport::SafeBuffer`s
+  Reported by *James Balazs*
 
 # 1.0.0 (2017-06-03)
 

@@ -11,6 +11,10 @@ RSpec.describe It::Link do
       expect { described_class.new(controller: 'articles', action: 'index') }.not_to raise_error
     end
 
+    it 'accepts a ActiveSupport::SafeBuffer as first param' do
+      expect { described_class.new('https://www.rubyonrails.org'.html_safe) }.not_to raise_error
+    end
+
     it 'raises a TypeError if the first param is an Integer' do
       expect { described_class.new(1) }.to raise_error(TypeError)
     end
