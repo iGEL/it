@@ -6,6 +6,8 @@ Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+Lint/MissingSuper:
+  Enabled: false
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
