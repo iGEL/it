@@ -4,7 +4,7 @@ require 'active_support/core_ext/string'
 
 RSpec.describe It::Helper do
   describe '#it' do
-    let(:view) { ActionView::Base.new(ActionView::LookupContext.new([])) }
+    let(:view) { ActionView::Base.new(ActionView::LookupContext.new([]), {}, nil) }
 
     before do
       I18n.backend.store_translations(:en, test1: 'I have a %{link:link to Rails} in the middle.')
@@ -149,7 +149,8 @@ RSpec.describe It::Helper do
     it 'supports dot-prefixed keys' do
       I18n.backend.store_translations(:en, widgets: {show: {all_widgets: 'See %{widgets_link:all widgets}'}})
       view.instance_variable_set(:'@_virtual_path', 'widgets/show') # For Rails 3.0
-      view.instance_variable_set(:'@virtual_path', 'widgets/show') # For Rails 3.1, 3.2 and probably 4.0
+      view.instance_variable_set(:'@virtual_path', 'widgets/show') # For Rails 3.1 - 6.0
+      view.instance_variable_set(:'@current_template', Struct.new(:virtual_path).new('widgets/show')) # For Rails 6.1
 
       expect(view.it('.all_widgets', widgets_link: '/widgets')).to eq('See <a href="/widgets">all widgets</a>')
     end

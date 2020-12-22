@@ -8,5 +8,6 @@ rvm:
 gemfile:
   - gemfiles/rails5.2
   - gemfiles/rails6.0
+  - gemfiles/rails6.1
 
 script: bundle exec rake
